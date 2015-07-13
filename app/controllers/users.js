@@ -6,8 +6,8 @@ var _ = require('lodash'),
 	passport = require('passport'),
 	nodemailer = require('nodemailer'),
 	User = require('../models/User'),
-  Article = require('../models/Article');
-  //secrets = require('../../config/secrets');
+  Article = require('../models/Article'),
+  secrets = require('../../config/secrets');
 
 
 // Create a new error handling controller method
