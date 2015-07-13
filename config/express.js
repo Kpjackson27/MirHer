@@ -18,6 +18,7 @@ var config = require('./config'),
 	cookieParser = require('cookie-parser'),
 	expressValidator = require('express-validator'),
 	errorHandler = require('errorhandler'),
+	cloudinary = require('cloudinary').v2,
 	passport = require('passport');
 
 //Create a new error handling controller method
@@ -35,6 +36,12 @@ var getErrorMessage = function(err){
 module.exports = function(db) {
 	//create new express application instance
 	var app = express();
+
+	cloudinary.config({
+		cloud_name:	'db433n5ld',
+		api_key: '377644565826279',	
+		api_secret:	'XAr35npXOawwUgk8M6KKPIWDszY'
+	});
 
 	//Use the 'NODE_ENV' variable to activate the 'morgan' logger or 'compress' middleware
 	if(process.env.NODE_ENV === 'development'){
@@ -91,6 +98,9 @@ module.exports = function(db) {
 		xssProtection: true
 	}));
 
+//cloudinary.uploader.upload("my_picture.jpg", function(result) { 
+ // console.log(result);
+//});
 	//Configure passport middleware
 	app.use(passport.initialize());
 	app.use(passport.session());
