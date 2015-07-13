@@ -7,8 +7,8 @@ var config = require('./config'),
 //Define the Mongoose configuration method
 module.exports = function() {
 	//use Mongoose to connect to MongoDB
-	//var db = mongoose.connect(config.db);
-	var db = mongoose.connect('mongodb://kareem:F@stskin101@ds045882.mongolab.com:45882/mirher');
+	var db = mongoose.connect(config.db);
+	//var db = mongoose.connect('mongodb://kareem:F@stskin101@ds045882.mongolab.com:45882/mirher');
 
 	mongoose.connection.on('error', function(){
 		console.error('MongoDB Connection Error. Please make sure that MongoDB is running!');
