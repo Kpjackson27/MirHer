@@ -1,0 +1,18 @@
+extends ../layouts/default
+
+block content
+	h3.text-center Your Almost Done
+	p.text-center Complete your profile to get started
+	p.separator
+	.col-md-4.col-md-offset-4.pad-0.text-light.overflow
+		form(method='POST')
+			input.form-control(type='hidden', name='_csrf', value=_csrf)
+			.form-group
+				input.form-control.form-fix(type="email", id="email", name="email", placeholder="EMAIL ADDRESS", required)
+			.form-group
+				input.form-control.form-fix(name="password", id="password", type="password", placeholder="PASSWORD", required)
+			.form-group
+				input.form-control.form-fix(name="confirmPassword", id="confirmPassword", type="password", placeholder="CONFIRM PASSWORD", required)
+			.form-group
+				input.button.outline.btn-block(type="submit", value="SIGN UP") 
+

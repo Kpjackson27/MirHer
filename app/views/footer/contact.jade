@@ -1,0 +1,44 @@
+extends ../layouts/default
+
+block content
+ .container.equal-height
+      .row
+        .col-md-6.pad-0
+          #google-map
+          .map-button map
+          .contact-info.text-light.pad-100
+            .info-box
+              i.pe-7s-map-2.pe-4x
+              .details
+                h5.title office
+                p.separator-left
+                h6 UK, London
+                h6 Paul Street 86-90
+            .info-box
+              i.pe-7s-phone.pe-4x
+              .details
+                h5.title phone
+                p.separator-left
+                h6 +987 123 456
+                h6 +123 976 432
+            .info-box
+              i.pe-7s-mail.pe-4x
+              .details
+                h5.title Email
+                p.separator-left
+                h6 info@mirher.com
+                h6 support@mirher.com
+        .col-md-6.pad-0.black.text-light.overflow
+          #contact.pad-100
+            h2.title.text-center contact
+            p.separator.mrg-top-20.mrg-btm-49
+            .contact-message
+            form(action='php/contact.php')
+              input#name(name='name', type='text', placeholder='Name:', required='', autocomplete='off')
+              input#email(name='email', type='email', placeholder='Email:', required='', autocomplete='off')
+              textarea#message(name='message', placeholder='Message:', required='', rows='4')
+              input#submit.button.outline.light(type='submit', value='send')
+    a.to-top(href='#')
+      i.pe-7s-angle-up
+
+

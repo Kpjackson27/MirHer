@@ -1,0 +1,30 @@
+extends ../layouts/default
+
+block content
+	.container.equal-height
+		.row
+			.col-md-6.pad-0
+				.contact-info.text-light.pad-100
+					.info-box
+						.details
+							h5.title Not a member? 
+								a(href='/signup') Sign Up
+							p.seperator-left
+							h6 Quisque aliquam in mauris in lobortis. Curabitur nisi nibh, pretium non ligula eget, condimentum cursus urna. Pellentesque eu aliquam augue, ac tincidunt neque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla tempus leo a malesuada egestas. Cras et finibus velit. Sed in ultricies elit.
+			.col-md-6.pad-0.overflow
+				.pad-100
+					h1.title.text-center Log in
+					p.separator.mrg-top-20.mrg-btm-49
+					.contact-message
+					form(method='POST')
+						input(type='hidden', name='_csrf', value=_csrf)
+						.form-group
+							input.form-control.form-fix(name='email', id='email', type='email', placeholder='Email', required)
+						.form-group
+							input.form-control.form-fix(name='password', id='password', type='password', placeholder='Password', autocomplete='off', required)
+						.form-group
+							input.button.outline.btn-block(type="submit", id="submit", value="login")
+							a(href="/forgot") Forgot Password?
+
+
+

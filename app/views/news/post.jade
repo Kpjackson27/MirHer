@@ -1,0 +1,37 @@
+extends ../layouts/default
+
+block content
+    section.bg-cover.bg-fixed.pad-top-120.pad-btm-120(style="background-image: url('http://placehold.it/1920x1280')")
+      .overlay.overlay-dark-2x
+      .container.text-light.pad-top-50.pad-btm-50
+        h2.title.text-center post title
+        p.separator
+    .container
+      .row.mrg-top-70
+        .col-md-8.col-md-offset-2.text-center
+          h6.title.bold something about...
+          p.small
+            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis numquam expedita aspernatur ipsum fugiat dolor, voluptate esse. Qui cumque magnam, officia commodi quam voluptate placeat animi, reprehenderit maxime, dolorum asperiores.
+          p.small
+            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis harum ea suscipit consequuntur vitae obcaecati eligendi, perspiciatis molestias quos.
+      .row.mrg-top-70
+        .col-md-8.col-md-offset-2
+          .video-container
+            iframe(width='560', height='315', src='https://www.youtube.com/embed/I5sJhSNUkwQ', frameborder='0', allowfullscreen='')
+        .col-md-8.col-md-offset-2.mrg-top-80
+          blockquote
+            p
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus omnis quasi, nisi, pariatur fuga expedita id qui neque magni quas blanditiis perferendis iste nulla aliquam consequatur accusamus recusandae cupiditate facere.
+            footer John Doe
+    .pagination
+      a.prev(href='#')
+        i.pe-7s-angle-left.pe-4x
+        span prev
+      a.all(href='#')
+        span all
+      a.next(href='#')
+        span next
+        i.pe-7s-angle-right.pe-4x
+    p.separator
+    a.to-top(href='#')
+      i.pe-7s-angle-up

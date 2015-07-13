@@ -1,0 +1,87 @@
+extends layouts/default
+
+block content
+    .container.bg-cover.bg-fixed.pad-top-120.pad-btm-120(style="background-image:url('http://placehold.it/1280x760')")
+      .overlay.overlay-dark-2x
+      .row.text-light.text-center.pad-30
+        h1.title How It Works?
+        p.separator
+    .container.mrg-top-30
+      .row
+        .col-md-5.pad-40
+          h3.title.bold
+            | Random Text
+            br
+            | go here
+          h6.monospace crazy stuff
+          p.separator-left
+          p.monospace
+            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim harum modi id ad! Vero saepe quod aspernatur.
+        .col-md-7.pad-40
+          p
+            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+          p
+            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto enim consequatur, facilis perspiciatis porro ab ea quam repudiandae fuga quo, excepturi commodi assumenda, dolore nemo est maiores hic distinctio qui.
+    .pad-80.mrg-top-70.mrg-btm-70.text-center(style="background-image:url('http://placehold.it/1920x1280')", data-stellar-background-ratio='.2')
+      .overlay.overlay-light-3x
+      h1.uppercase Get Started
+      p.separator.pad-30
+      .container
+        .row
+          .col-md-6.col-md-offset-3
+            .tab-panels.text-dark
+              #tab1
+                p
+                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit pariatur itaque cupiditate dicta eligendi ad, vero, est, officiis praesentium impedit laudantium harum quo unde explicabo. Dolore pariatur obcaecati ea.
+              #tab2
+                p
+                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis commodi excepturi, beatae aut illo quas distinctio quisquam culpa! Consectetur consequuntur laborum tempore ipsa laboriosam mollitia, quam consequatur voluptatibus accusamus assumenda!
+              #tab3.active
+                p
+                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, ipsum debitis  totam accusantium ratione veritatis perferendis excepturi non culpa voluptatem!
+                a.button.outline(href='portfolio.html') Get Started
+    .container.mrg-top-100
+      h2.title.text-center.bold SERVICES
+      p.separator
+      .row.pad-top-50
+        .col-md-4
+          .icon-box
+            i.pe-7s-speaker
+            .box-details
+              h4 branding
+              p.separator
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae minus praesentium tempora nihil voluptatem totam repellat quod repellendus. Hic iste quidem.
+        .col-md-4
+          .icon-box
+            i.pe-7s-light
+            .box-details
+              h4 unique design
+              p.separator
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae minus praesentium tempora nihil voluptatem totam repellat quod repellendus. Hic iste quidem.
+        .col-md-4
+          .icon-box
+            i.pe-7s-camera
+            .box-details
+              h4 Photography
+              p.separator
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae minus praesentium tempora nihil voluptatem totam repellat quod repellendus. Hic iste quidem.
+    section.clients.grey.mrg-top-120
+      .container.pad-top-60.pad-btm-60
+        .row
+          .col-md-2.col-sm-4.col-xs-6
+            img(src='http://placehold.it/200x130', alt='')
+          .col-md-2.col-sm-4.col-xs-6
+            img(src='http://placehold.it/200x130', alt='')
+          .col-md-2.col-sm-4.col-xs-6
+            img(src='http://placehold.it/200x130', alt='')
+          .col-md-2.col-sm-4.col-xs-6
+            img(src='http://placehold.it/200x130', alt='')
+          .col-md-2.col-sm-4.col-xs-6
+            img(src='http://placehold.it/200x130', alt='')
+          .col-md-2.col-sm-4.col-xs-6
+            img(src='http://placehold.it/200x130', alt='')
+    a.to-top(href='#')
+      i.pe-7s-angle-up

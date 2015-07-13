@@ -1,0 +1,71 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='csrf-token', content=_csrf)
+    title #{title} 
+    != css('main')
+  body
+    .main-wrapper.animsition
+
+      header
+        a.logo(href='/')
+          img(src='/img/mirher_logo.png', alt='LOGO').logo2
+        topnav#topmenunav
+          ul.push-right
+           if !user
+              li
+                a(href='/login') Login
+            else 
+              li
+                p Welcome
+                  a(href='/account') #{user.email} 
+            
+
+        a.mob-nav(href='#')
+          i.fa.fa-bars
+        nav#topmenu
+          ul
+            li
+              a(href='/') home
+            li
+              a(href='/works') How it works
+            li
+              a(href='/look') lookbook
+
+            li
+              a(href='/news') news
+            if user
+              li
+                a(href='/mymirher') My MirHer
+                ul
+                  li
+                    a(href='/account') Profile
+                  li
+                    a(href='/orders') Orders
+                  li
+                    a(href='#') My Stylist
+                  li
+                    a(href='#') Settings
+                  
+      include ../partials/flash
+      block content
+      footer#footer1
+        p.separator
+          .social-links
+            a(href="/faq") FAQ
+            a(href="/about") ABOUT
+            a(href="/terms") TERMS
+            a(href="/careers") CAREERS
+            a(href="/contact") CONTACT
+        .social-links
+          a(href="#") 
+            i.fa.fa-facebook
+          a(href="#") 
+            i.fa.fa-twitter
+          a(href="#")
+            i.fa.fa-instagram
+        .copyright.hidden-xs &copy; MirHer
+    != js('application')
