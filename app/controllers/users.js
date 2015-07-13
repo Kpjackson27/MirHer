@@ -6,7 +6,7 @@ var _ = require('lodash'),
 	passport = require('passport'),
 	nodemailer = require('nodemailer'),
 	User = require('../models/User'),
-  Article = require('../models/Article'),
+  Article = require('../models/Article');
   //secrets = require('../../config/secrets');
 
 
