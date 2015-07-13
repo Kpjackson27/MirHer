@@ -81,6 +81,7 @@ module.exports = function(db) {
 	app.set('views', './app/views');
 	app.set('view engine', 'jade');
 	app.use(compress());
+	
 	app.use(connectAssets({
 		paths: [path.join('public/styles'), path.join('public/js'), path.join('public/fonts')]
 	}));
