@@ -7,13 +7,13 @@ var config = require('./config'),
 	compress = require('compression'),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override'),
-	multer = require('multer'),
+	//multer = require('multer'),
 	flash = require('express-flash'),
 	session = require('express-session'),
 	lusca = require('lusca'),
 	MongoStore = require('connect-mongo')(session),
-	connectAssets = require('connect-assets'),
-	path = require('path'),
+	//connectAssets = require('connect-assets'),
+	//path = require('path'),
 	_ = require('lodash'),
 	cookieParser = require('cookie-parser'),
 	expressValidator = require('express-validator'),
@@ -58,7 +58,7 @@ module.exports = function(db) {
 	app.use(methodOverride());
 
 	//Configure multer module
-	app.use(multer({ dest: path.join(__dirname, 'uploads')}));
+	//app.use(multer({ dest: 'uploads')}));
 	
 	//Configure express validator module
 	app.use(expressValidator());
@@ -81,13 +81,13 @@ module.exports = function(db) {
 	app.set('views', './app/views');
 	app.set('view engine', 'jade');
 	app.use(compress());
-	
+	/*
 	app.use(connectAssets({
 		paths: [path.join('public/styles'), path.join('public/js'), path.join('public/fonts')]
 	}));
+*/
 
-	//render static files
-	app.use(express.static(path.join('public'), { maxAge: 31557600000}));
+	
 
 	//configure the flash messages middleware
 	app.use(flash());
@@ -121,6 +121,9 @@ module.exports = function(db) {
 	require('../app/routes/comingsoon.js')(app);
 	require('../app/routes/post.js')(app);
 	require('../app/routes/orders.js')(app);
+
+	//render static files
+	app.use(express.static('./public'));
 
 	return app;
 };
