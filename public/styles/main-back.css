@@ -6,6 +6,14 @@
     margin-left:55%;
     }
 
+    @media(max-width:768px){
+        .logo2{
+    height:150px;
+    margin-bottom:-50px;
+    margin-left:0;
+    }
+    }
+
 body.black{
     background-color: black;
 }
@@ -739,12 +747,12 @@ header .logo{
 .mob-nav{
     display: none;
     width: 20px;
-    height: 20px;
+    /*height: 20px;*/
     margin: 0 auto 12px;
     font-size: 14px;
 }
 @media(max-width: 767px){
-    .mob-nav{display: block;}
+    .mob-nav{display: block; }
     #topmenu{display: none;position: absolute;padding-bottom: 20px;margin-bottom: 50px;}
     #topmenu ul{}
     #topmenu ul li{display: block;}
