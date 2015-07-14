@@ -6,7 +6,7 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='csrf-token', content=_csrf)
     title #{title} 
-    != css('main')
+    include ../layouts/head
   body.black
     .main-wrapper.animsition.fullheight
 
@@ -22,4 +22,4 @@ html
           a.white-bg(href="#")
             i.fa.fa-instagram
         .copyright.hidden-xs &copy; MirHer
-    != js('application')
+    include ../layouts/foot
