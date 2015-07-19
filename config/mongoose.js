@@ -16,7 +16,7 @@ module.exports = function() {
 
 	//Load the application models
 	require('../app/models/User');
-	require('../app/models/Article');
+	require('../app/models/News');
 	//Return the Mongoose connection instance
 	return db;
 };

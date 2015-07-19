@@ -3,7 +3,7 @@
 
 // Load the module dependencies
 var mongoose = require('mongoose'),
-	Article = mongoose.model('Article');
+	News = mongoose.model('News');
 
 // Create a new error handling controller method
 var getErrorMessage = function(err) {
@@ -16,34 +16,35 @@ var getErrorMessage = function(err) {
 	}
 };
 
+
 //render the page to create new articles
-exports.getCreateArticles = function(req, res) {
+exports.createNews = function(req, res) {
 	if (req.user) {
-		res.render('article/create', {
-			title: 'Create Article'
+		res.render('admin/news', {
+			title: 'Create News'
 		});
 	} else
-		return res.redirect('/');
+		return res.redirect('/admin');
 };
 
 //create a new article
 exports.create = function(req, res) {
 	// Create a new article object
-	var article = new Article(req.body);
+	var news = new News(req.body);
 
 	// Set the article's 'creator' property
-	article.creator = req.user;
+	news.creator = req.user;
 
 	// Try saving the article
-	article.save(function(err) {
+	news.save(function(err) {
 		if (err) {
 			req.flash('errors', {
 				msg: getErrorMessage(err)
 			});
-			return res.redirect('/api/CreateArticles');
+			return res.redirect('/admin/news');
 		} else {
 			// req.flash('success', { msg: 'Poem created.'});
-			return res.redirect('/api/articles');
+			return res.redirect('/admin');
 		}
 	});
 };
@@ -51,22 +52,22 @@ exports.create = function(req, res) {
 // Create a new controller method that retrieves a list of articles
 exports.list = function(req, res) {
 	// Use the model 'find' method to get a list of articles
-	Article.find().sort('-created').populate('creator', 'email profile profile.name').exec(function(err, articles) {
+	News.find().sort('-created').populate('creator', 'email profile profile.name').exec(function(err, news) {
 		if (err) {
 			req.flash('errors', {
 				msg: getErrorMessage(err)
 			});
-			return res.redirect('/');
+			return res.redirect('/admin');
 		} else {
 			res.format({
 				html: function() {
-					res.render('article/listPost', {
-						title: 'All Poems',
-						"articles": articles
+					res.render('admin/allnews', {
+						title: 'All News',
+						"news": news
 					});
 				},
 				json: function() {
-					res.json(articles);
+					res.json(news);
 				}
 			});
 		}
@@ -77,13 +78,13 @@ exports.list = function(req, res) {
 exports.read = function(req, res) {
 	res.format({
 		html: function() {
-			res.render('article/singlePost', {
-				title: 'Single Poem',
-				"article": req.article
+			res.render('admin/singelnews', {
+				title: 'Single news',
+				"news": req.news
 			});
 		},
 		json: function() {
-			res.json(req.article);
+			res.json(req.news);
 		}
 	});
 };
@@ -129,15 +130,15 @@ exports.read = function(req, res) {
 // Create a new controller method that delete an existing article
 exports.delete = function(req, res) {
 	// Get the article from the 'request' object
-	var article = req.article;
+	var news = req.news;
 	// Use the model 'remove' method to delete the article
-	article.remove(function(err) {
+	news.remove(function(err) {
 		if (err) {
-			req.flash('errors', { msg: 'Failed to delete verse.'});
-			res.redirect('/api/articles');
+			req.flash('errors', { msg: 'Failed to delete news.'});
+			res.redirect('/admin/allnews');
 		} else {
-			 req.flash('success', { msg: 'Verse deleted.'});
-			 res.redirect('/api/articles');
+			 req.flash('success', { msg: 'news deleted.'});
+			 res.redirect('/admin/allnews');
 			// Send a JSON representation of the article 
 			// res.json(article);
 		}
@@ -145,22 +146,18 @@ exports.delete = function(req, res) {
 };
 
 // Create a new controller middleware that retrieves a single existing article
-exports.articleByID = function(req, res, next, id) {
+exports.newsByID = function(req, res, next, id) {
 	// Use the model 'findById' method to find a single article 
-	Article.findById(id).populate('creator', 'email profile').exec(function(err, article) {
+	News.findById(id).populate('creator', 'email').exec(function(err, news) {
 		if (err) return next(err);
-		if (!article) {
+		if (!news) {
 				req.flash('errors', {
-					msg: 'Failed to load article ' + id
+					msg: 'Failed to load news ' + id
 				});
 				return res.redirect('/');
 		}
 		// If an article is found use the 'request' object to pass it to the next middleware
-		req.article = article;
-		// console.log('id: ' + req.article.creator.id);
-		// console.log('profile: ' + req.article.creator.profile);
-		// console.log('profile.name: ' + req.article.creator.profile.name);
-		// Call the next middleware
+		req.news = news;
 		next();
 	});
 };
@@ -168,14 +165,14 @@ exports.articleByID = function(req, res, next, id) {
 // Create a new controller middleware that is used to authorize an article operation 
 exports.hasAuthorization = function(req, res, next) {
 	// If the current user is not the creator of the article send the appropriate error message
-	if (req.article.creator.id !== req.user.id) {
+	if (req.news.creator.id !== req.user.id) {
 		// return res.status(403).send({
 		// 	message: 'User is not authorized creator'
 		// });
 		
 		req.flash('errors', { msg: 'User is not authorized creator'});
 		// return(next(err));
-		return res.redirect('/api/articles');
+		return res.redirect('/admin/allnews');
 	}
 
 	// Call the next middleware

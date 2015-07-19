@@ -1,0 +1,15 @@
+extends layouts/default
+
+block content
+	h1.
+		#{title}
+	ul
+		- each article, i in news
+			li
+				= 'Title: ' + article.title
+				br
+				= article.content
+				br
+				= 'Created on: ' + article.created
+				br
+				= 'Image' + article.image

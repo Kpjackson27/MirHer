@@ -4,60 +4,11 @@ block content
   .container
     .row
       .blog
-        .post.col-md-4.col-sm-6
-          a(href='blog-post.html')
-            .post-media
-              img(src='http://placehold.it/800x600', alt='')
-            .post-content
-              h5.title simple blog post
-              p.date 17 june 2015
-        .post.col-md-4.col-sm-6
-          a(href='blog-post.html')
-            .post-media.video-container
-              iframe(src='http://player.vimeo.com/video/26757344?title=0&byline=0&portrait=0', width='500', height='281', allowfullscreen='')
-            .post-content
-              h5.title vimeo
-              p.date 17 june 2015
-        .post.col-md-4.col-sm-6
-          a(href='blog-post.html')
-            .post-media
-              iframe(width='100%', height='300', scrolling='no', frameborder='no', src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/34509698&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true')
-            .post-content
-              h5.title soundcloud music
-              p.date 17 june 2015
-        .post.col-md-4.col-sm-6
-          a(href='blog-post.html')
-            .post-content
-              h5.title quote post
-              p.date 17 june 2015
-              i.fa.fa-quote-right.fa-2x
-              blockquote
-                p
-                  | I am always doing that which I cannot do, in order that I may learn how to do it.
-                footer Pablo Picasso
-        .post.col-md-4.col-sm-6
-          a(href='blog-post.html')
-            .post-media
-              .img-slider
-                ul.slides
-                  li
-                    img(src='http://placehold.it/800x500', alt='')
-                  li
-                    img(src='http://placehold.it/800x500', alt='')
-            .post-content
-              h5.title image gallery
-              p.date 17 june 2015
-        .post.col-md-4.col-sm-6
-          a(href='blog-post.html')
-            .post-media.video-container
-              iframe(width='560', height='315', src='https://www.youtube.com/embed/I5sJhSNUkwQ', frameborder='0', allowfullscreen='')
-            .post-content
-              h5.title youtube video
-              p.date 17 june 2015
-        .post.col-md-4.col-sm-6
-          a(href='blog-post.html')
-            .post-media
-              img(src='http://placehold.it/800x600', alt='')
-            .post-content
-              h5.title simple blog post
-              p.date 17 june 2015
+        - each article, i in news
+          .post.col-md-4.col-sm-6
+            a(href='/news/#{article._id}')
+              .post-media
+                img(src='http://placehold.it/800x600', alt='')
+              .post-content
+                h5.title= article.title
+                p.date= article.created

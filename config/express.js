@@ -7,18 +7,17 @@ var config = require('./config'),
 	compress = require('compression'),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override'),
-	//multer = require('multer'),
+	multer = require('multer'),
 	flash = require('express-flash'),
 	session = require('express-session'),
 	lusca = require('lusca'),
 	MongoStore = require('connect-mongo')(session),
-	//connectAssets = require('connect-assets'),
-	//path = require('path'),
 	_ = require('lodash'),
 	cookieParser = require('cookie-parser'),
 	expressValidator = require('express-validator'),
 	errorHandler = require('errorhandler'),
 	cloudinary = require('cloudinary').v2,
+	fs = require('fs'),
 	passport = require('passport');
 
 //Create a new error handling controller method
@@ -37,11 +36,15 @@ module.exports = function(db) {
 	//create new express application instance
 	var app = express();
 
-	cloudinary.config({
+		cloudinary.config({
 		cloud_name:	'db433n5ld',
 		api_key: '377644565826279',	
 		api_secret:	'XAr35npXOawwUgk8M6KKPIWDszY'
-	});
+		});
+
+		app.locals.api_key = cloudinary.config().api_key;
+		app.locals.cloud_name = cloudinary.config().cloud_name;
+
 
 	//Use the 'NODE_ENV' variable to activate the 'morgan' logger or 'compress' middleware
 	if(process.env.NODE_ENV === 'development'){
@@ -58,7 +61,7 @@ module.exports = function(db) {
 	app.use(methodOverride());
 
 	//Configure multer module
-	//app.use(multer({ dest: 'uploads')}));
+	app.use(multer({ dest: './uploads/'}));
 	
 	//Configure express validator module
 	app.use(expressValidator());
@@ -81,13 +84,8 @@ module.exports = function(db) {
 	app.set('views', './app/views');
 	app.set('view engine', 'jade');
 	app.use(compress());
-	/*
-	app.use(connectAssets({
-		paths: [path.join('public/styles'), path.join('public/js'), path.join('public/fonts')]
-	}));
-*/
 
-	
+
 
 	//configure the flash messages middleware
 	app.use(flash());
@@ -99,9 +97,7 @@ module.exports = function(db) {
 		xssProtection: true
 	}));
 
-//cloudinary.uploader.upload("my_picture.jpg", function(result) { 
- // console.log(result);
-//});
+
 	//Configure passport middleware
 	app.use(passport.initialize());
 	app.use(passport.session());
@@ -116,11 +112,12 @@ module.exports = function(db) {
 	//Load the routing files
 	require('../app/routes/index.js')(app);
 	require('../app/routes/users.js')(app);
-	require('../app/routes/articles.js')(app);
+	require('../app/routes/news.js')(app);
 	require('../app/routes/links.js')(app);
 	require('../app/routes/comingsoon.js')(app);
 	require('../app/routes/post.js')(app);
 	require('../app/routes/orders.js')(app);
+	require('../app/routes/admin/admin.js')(app);
 
 	//render static files
 	app.use(express.static('./public'));

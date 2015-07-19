@@ -12,18 +12,9 @@ html
 
       header
         a.logo(href='/')
-          img(src='/img/mirher_logo.png', alt='LOGO').logo2
+          img(src='/img/mirher.png', alt='LOGO').logo2
         topnav#topmenunav
           ul.push-right
-           if !user
-              li
-                a(href='/login') Login
-            else 
-              li
-                p Welcome
-                  a(href='/account') #{user.email} 
-            
-
         a.mob-nav(href='#')
           i.fa.fa-bars
         nav#topmenu
@@ -37,9 +28,12 @@ html
 
             li
               a(href='/news') news
-            if user
+            if !user
+                li
+                  a(href='/login') Login
+            else 
               li
-                a(href='/mymirher') My MirHer
+                a(href='/mymirher') #{user.email}'s  MirHer
                 ul
                   li
                     a(href='/account') Profile
@@ -51,7 +45,6 @@ html
                     a(href='#') Settings
                   li
                     a(href='/logout') Sign out
-                  
       include ../partials/flash
       block content
       footer#footer1

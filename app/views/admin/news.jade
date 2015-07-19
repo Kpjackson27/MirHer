@@ -1,0 +1,27 @@
+extends layouts/default
+
+block content
+	.container
+		.row
+			h1.text-center MirHer News
+		.row
+			form(Method="POST")
+				input(type='hidden', name='_csrf', value=_csrf)
+				.col-md-4
+					label(for="payload") Select Image to upload
+					input#payload(type="file" name="myFile" accept="image/*")
+				.col-md-8
+					.col-md-5
+						h5 Title
+						.form-group
+							input.form-control.form-fix(name='title', id='title', type='text', placeholder='Title', required)
+						h5 Date
+						.form-group
+							input.form-control.form-fix(name='date', id='date', type='date', placeholer='Date', required)
+						h5 Content
+						.form-group
+							textarea.form-control.form-fix(name='content', id='content', type='text', placeholer='Content', required)
+						.form-group
+							input.button.outline.btn-block(type="submit", value="Create Post")
+							
+
