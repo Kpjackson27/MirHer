@@ -1,7 +1,7 @@
 'use strict';
 
 //Load the module dependencies
-var index = require('../controllers/comingsoon');
+var index = require('../controllers/index');
 	
 
 module.exports = function(app){

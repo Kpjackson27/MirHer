@@ -98,6 +98,8 @@ exports.postLogin = function(req,res,next){
   exports.postSignup = function(req, res, next){
   	req.assert('email', 'Email is not valid').isEmail();
   	req.assert('password', 'Password must be at least 4 characters long').len(4);
+    req.assert('firstname', 'First name cannot be left blank').notEmpty();
+    req.assert('lastname', 'Last name cannot be left blank').notEmpty();
   	req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
   	var errors = req.validationErrors();
@@ -108,6 +110,8 @@ exports.postLogin = function(req,res,next){
   	}
 
   	var user = new User({
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
   		email: req.body.email,
   		password: req.body.password
   	});
@@ -135,6 +139,65 @@ exports.postLogin = function(req,res,next){
       title: 'Account Management'
       });
     };
+
+    /**
+      *Get settings page
+      *
+    */
+    exports.settings = function(req,res){
+      res.render('account/settings', {
+          title: 'Settings'
+      });
+    };
+    /**
+      *Get stylist page
+      *
+    */
+    exports.mystylist = function(req,res){
+      res.render('account/mystylist', {
+          title: 'My Stylist'
+      });
+    };
+    /**
+      * Get request page
+      *
+    */
+    exports.request = function(req,res){
+      res.render('account/request', {
+        title: 'Request Chest'
+      });
+    };
+
+    exports.texture = function(req,res){
+      res.render('account/texture', {
+        title: 'Select Texture'
+      });
+    };
+
+
+    exports.lengths = function(req,res){
+      res.render('account/lengths', {
+        title: 'Select Length'
+      });
+    };
+
+    exports.extras = function(req,res){
+      res.render('account/extras', {
+        title: 'Extras'
+      });
+    };
+
+     exports.finalize = function(req,res){
+      res.render('account/finalize', {
+        title: 'Finalize'
+      });
+    };
+
+
+
+
+
+
 
 
 

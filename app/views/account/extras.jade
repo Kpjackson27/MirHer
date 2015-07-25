@@ -1,0 +1,31 @@
+extends ../layouts/default
+
+block content
+	.container.equal-height
+		.row
+			h3.title.text-center Request Chest
+			p.separator
+			.spacer-mini
+			h5.title.text-center Extras
+			p.separator
+	.portfolio-wrapper.container
+		.portfolio.col-3(data-space='10')
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.hairandmakeupideas.com/wp-content/uploads/2015/03/curly-hair-extensions-22.jpg')")
+					.item-overlay
+						h5 Closures
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.freeindex.co.uk/media/listingpics/616/842/tightkinky3c4a2.jpg')")
+					.item-overlay
+						h5 Clip ins
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://atlantablackstar.com/wp-content/uploads/2014/10/camille-McDonald.jpg')")
+					.item-overlay
+						h5 Frontals
+	.col-md-2
+		input#submit.button.outline(type='submit', value='Add Extra')
+	.col-md-2
+		input#submit.button.outline(type='submit', value='Skip')

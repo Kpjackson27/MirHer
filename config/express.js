@@ -36,14 +36,16 @@ module.exports = function(db) {
 	//create new express application instance
 	var app = express();
 
+	
 		cloudinary.config({
 		cloud_name:	'db433n5ld',
 		api_key: '377644565826279',	
 		api_secret:	'XAr35npXOawwUgk8M6KKPIWDszY'
-		});
+	});
 
-		app.locals.api_key = cloudinary.config().api_key;
-		app.locals.cloud_name = cloudinary.config().cloud_name;
+app.locals.api_key = cloudinary.config().api_key;
+app.locals.cloud_name = cloudinary.config().cloud_name;
+
 
 
 	//Use the 'NODE_ENV' variable to activate the 'morgan' logger or 'compress' middleware

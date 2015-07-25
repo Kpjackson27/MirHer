@@ -1,0 +1,30 @@
+extends ../layouts/default
+
+block content
+	.container.equal-height
+		.row
+			h3.title.text-center Request Chest
+			p.separator
+			.spacer-mini
+			h5.title.text-center Finalize Chest
+			p.separator
+			.col-md-12
+				.container
+					table.table
+						thead
+							tr
+								th Type 
+								th Texture
+								th Lengths
+								th Extra
+							tbody
+								tr
+									td Brazillean
+										a(href='#')  Edit
+									td Wavy
+										a(href='#')  Edit
+									td 14 16 18
+										a(href='#')  Edit
+									td No extras
+										a(href='#')  Edit
+		input#submit.button.outline(type='submit', value='Request Chest')

@@ -14,7 +14,13 @@ var UserSchema = new Schema({
 		lowercase: true,
 	},
 	password: {
-		type: String,
+		type: String
+	},
+	firstname:{
+		type : String
+	},
+	lastname: {
+		type: String
 	},
 	tokens: Array,
 

@@ -36,6 +36,34 @@ module.exports = function(app){
 	app.route('/account')
 		.get(passportConf.isAuthenticated, users.getAccount);
 
+	//setup the 'account' routes
+	app.route('/settings')
+		.get(passportConf.isAuthenticated, users.settings);
+
+	//setup the 'account' routes
+	app.route('/mystylist')
+		.get(passportConf.isAuthenticated, users.mystylist);
+
+	//setup the 'account' routes
+	app.route('/request')
+		.get(passportConf.isAuthenticated, users.request);
+
+
+	//setup the 'account' routes
+	app.route('/texture')
+		.get(passportConf.isAuthenticated, users.texture);
+		//setup the 'account' routes
+	app.route('/lengths')
+		.get(passportConf.isAuthenticated, users.lengths);
+
+			//setup the 'account' routes
+	app.route('/extras')
+		.get(passportConf.isAuthenticated, users.extras);
+
+			//setup the 'account' routes
+	app.route('/finalize')
+		.get(passportConf.isAuthenticated, users.finalize);
+
 	//setup the 'mirher' routes
 	app.route('/mymirher')
 		.get(passportConf.isAuthenticated, users.getMyMirher);

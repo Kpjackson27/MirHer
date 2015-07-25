@@ -1,0 +1,34 @@
+extends ../layouts/default
+
+block content
+	.container.equal-height
+		.row
+			h3.title.text-center Request Chest
+			p.separator
+			.spacer-mini
+			h5.title.text-center Select Length
+			p.separator
+	.portfolio-wrapper.container
+		.portfolio.col-2(data-space='10')
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.hairandmakeupideas.com/wp-content/uploads/2015/03/curly-hair-extensions-22.jpg')")
+					.item-overlay
+						h5 Wavy
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.freeindex.co.uk/media/listingpics/616/842/tightkinky3c4a2.jpg')")
+					.item-overlay
+						h5 Curly
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://atlantablackstar.com/wp-content/uploads/2014/10/camille-McDonald.jpg')")
+					.item-overlay
+						h5 Yaki
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://images2.fanpop.com/images/photos/6500000/soft-pose-tyra-banks-6597397-800-600.jpg')")
+					.item-overlay
+						h5 Straight
+	.col-md-2.col-md-offset-9
+		input#submit.button.outline(type='submit', value='Select Length')

@@ -1,0 +1,59 @@
+extends ../layouts/default
+
+block content
+	h4.text-center Account Info
+	p.separator
+	.col-md-12.text-center
+		.tabs
+			ul.tab-nav
+				li.active(data-tabpanel='#tab1') Profile Info |
+				li(data-tabpanel='#tab2') Shipping Address |
+				li(data-tabpanel='#tab3') Payment Methods 
+			.tab-panels
+				#tab1.active
+					.container
+						.col-md-3.col-md-offset-2
+							.spacer-mini
+							h4.text-left Profile Info
+							hr.line
+							form(method='POST')
+								input(type='hidden', name='_csrf', value=_csrf)
+								.form-group
+									input.form-control.form-fix(name='firstname', id='firstname', type='firstname', placeholder='First Name', required)
+								.form-group
+									input.form-control.form-fix(name='lastname', id='lastname', type='lastname', placeholder='Last Name', autocomplete='off', required)
+								.form-group
+									input.form-control.form-fix(name='email', id='email', type='email', placeholder='#{user.email}', autocomplete='off', required)
+									.spacer-mini
+							h4.text-left Social Info
+							hr.line
+							form(method='POST')
+								input(type='hidden', name='_csrf', value=_csrf)
+								.form-group
+									input.form-control.form-fix(name='faceboook', id='facebook', type='facebook', placeholder='Facebook')
+								.form-group
+									input.form-control.form-fix(name='twitter', id='twitter', type='twitter', placeholder='Twitter', autocomplete='off')
+								.form-group
+									input.form-control.form-fix(name='instagram', id='instagram', type='instagram', placeholder='Instagram', autocomplete='off')
+								.form-group
+									input.form-control.form-fix(name='pinterest', id='pinterest', type='pinterest', placeholder='Pinterest', autocomplete='off')
+								.form-group
+									input.button.outline.btn-block(type="submit", value="Update Profile")
+						.col-md-3.col-md-offset-2
+							.spacer-mini
+							h4 Profile Image
+							p.separator
+							img.img-responsive.img-rounded(src="http://placehold.it/350x350")
+							p Upload Image
+				#tab2
+					.container
+						.col-md-4.col-md-offset-4
+							include shipping
+				#tab3
+					.container
+						.col-md-4.col-md-offset-4
+							include card
+						
+
+
+						

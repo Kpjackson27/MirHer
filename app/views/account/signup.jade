@@ -8,6 +8,10 @@ block content
 		form(method='POST')
 			input.form-control(type='hidden', name='_csrf', value=_csrf)
 			.form-group
+				input.form-control.form-fix(type="text", id="firstname", name="firstname", placeholder="FIRST NAME", required)
+			.form-group
+				input.form-control.form-fix(type="text", id="lastname", name="lastname", placeholder="LAST NAME", required)
+			.form-group
 				input.form-control.form-fix(type="email", id="email", name="email", placeholder="EMAIL ADDRESS", required)
 			.form-group
 				input.form-control.form-fix(name="password", id="password", type="password", placeholder="PASSWORD", required)

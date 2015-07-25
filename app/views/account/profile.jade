@@ -1,60 +1,37 @@
 extends ../layouts/default
 
 block content
-	h4.text-center Account Info
+	h4.text-center Profile
 	p.separator
-	.col-md-12.text-center
-		.tabs
-			ul.tab-nav
-				li.active(data-tabpanel='#tab1') Profile Info |
-				li(data-tabpanel='#tab2') Shipping Address |
-				li(data-tabpanel='#tab3') Payment Methods |
-				li(data-tabpanel='#tab4') Order History 
-			.tab-panels
-				#tab1.active
-					.container
-						.col-md-3.col-md-offset-2
-							.spacer-mini
-							h4.text-left Profile Info
-							hr.line
-							form(method='POST')
-								input(type='hidden', name='_csrf', value=_csrf)
-								.form-group
-									input.form-control.form-fix(name='firstname', id='firstname', type='firstname', placeholder='First Name', required)
-								.form-group
-									input.form-control.form-fix(name='lastname', id='lastname', type='lastname', placeholder='Last Name', autocomplete='off', required)
-								.form-group
-									input.form-control.form-fix(name='email', id='email', type='email', placeholder='#{user.email}', autocomplete='off', required)
-									.spacer-mini
-							h4.text-left Social Info
-							hr.line
-							form(method='POST')
-								input(type='hidden', name='_csrf', value=_csrf)
-								.form-group
-									input.form-control.form-fix(name='faceboook', id='facebook', type='facebook', placeholder='Facebook')
-								.form-group
-									input.form-control.form-fix(name='twitter', id='twitter', type='twitter', placeholder='Twitter', autocomplete='off')
-								.form-group
-									input.form-control.form-fix(name='instagram', id='instagram', type='instagram', placeholder='Instagram', autocomplete='off')
-								.form-group
-									input.form-control.form-fix(name='pinterest', id='pinterest', type='pinterest', placeholder='Pinterest', autocomplete='off')
-								.form-group
-									input.button.outline.btn-block(type="submit", value="Update Profile")
-						.col-md-3.col-md-offset-2
-							.spacer-mini
-							h4 Profile Image
-							p.separator
-							img.img-responsive.img-rounded(src="http://placehold.it/350x350")
-							p Upload Image
-				#tab2
-					.container
-						.col-md-4.col-md-offset-4
-							include shipping
-				#tab3
-					.container
-						.col-md-4.col-md-offset-4
-							include card
-						
+	.col-md-12
+		.container
+			.row
+				.col-md-3.col-md-offset-3
+					h5.text-center User Image
+					p.separator
+					img.img-rounded(src="http://placehold.it/200x200")
+					p.text-center Upload Image
+					h5.text-center
+						a(href='/mystylist') My Stylist
+					h5.text-center
+						a(href='/request') Request Chest
+				.col-md-3
+					h5.text-center User Information
+					p.separator
+					h5.text-center Kareem Phillip-Jackson
+					h6.text-center #{user.email}
+					h5.text-center
+						a(href="#") Edit
+					.spacer-mini
+					h5.text-center Shipping Information
+					p.separator
+					h5.text-center 11711 N 50th Street
+					p.text-center Tampa, FL
+					p.text-center 33617
+						h5.text-center
+							a(href="#") Edit
+					.spacer-mini
 
+			
 
 						
