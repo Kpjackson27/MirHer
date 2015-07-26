@@ -16,6 +16,12 @@ exports.news = function(req,res){
 	});
 };
 
+exports.users = function(req,res){
+	res.render('admin/users', {
+		title: 'MirHer | Users',
+	});
+};
+
 exports.portfolio = function(req,res, next){
 	cloudinary.api.resource(function(items){
 		res.render('admin/portfolio', {

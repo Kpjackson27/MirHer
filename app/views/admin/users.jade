@@ -1,0 +1,28 @@
+extends layouts/default
+
+block content
+	h4.text-center #{title}
+		p.separator
+		.col-md-12
+			.container
+				table.table
+					thead
+						tr
+							th ID
+							th Firstname
+							th Lastname
+							th Email
+						tbody
+							- each user, i in users
+								tr
+									td= user._id
+									td= user.firstname
+									td= user.lastname
+									td= user.email
+								
+									
+
+	
+
+								
+

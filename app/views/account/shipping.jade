@@ -4,8 +4,6 @@ p.separator
 form(method='POST')
 	input(type='hidden', name='_csrf', value=_csrf)
 	.form-group
-		input.form-control.form-fix(name='name', id='name', type='name', placeholder='Full Name')
-	.form-group
 		input.form-control.form-fix(name='street', id='street', type='street', placeholder='Street Address', autocomplete='off', required)
 	.form-group
 		input.form-control.form-fix(name='apt', id='apt', type='apt', placeholder='Apt, floor, suite', autocomplete='off', required)
@@ -15,8 +13,6 @@ form(method='POST')
 		input.form-control.form-fix(name='state', id='state', type='state', placeholder='State', autocomplete='off', required)
 	.form-group
 		input.form-control.form-fix(name='zip', id='zip', type='zip', placeholder='Zip', autocomplete='off', required)
-	.form-group
-		input.form-control.form-fix(name='location', id='location', type='location', placeholder='Home/Office', autocomplete='off', required)
 	.form-group
 		input.button.outline.btn-block(type="submit", value="Add Address") 
 

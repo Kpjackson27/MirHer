@@ -116,20 +116,82 @@ exports.postLogin = function(req,res,next){
   		password: req.body.password
   	});
 
-  	User.findOne({email: req.body.email}, function(err, existingUser){
-  		if(existingUser){
-  			req.flash('errors', { msg: 'Account with that email address already exists.'});
-  			return res.redirect('/signup');
-  		}
-  		user.save(function(err){
-  			if(err) return next(err);
-  			req.logIn(user, function(err){
-  				if(err) return next(err);
-  				res.redirect('/mymirher');
-  			});
-  		});
-  	});
-  };
+
+    async.waterfall([
+    function(done) {
+      User.findOne({email: req.body.email}, function(err, existingUser){
+      if(existingUser){
+        req.flash('errors', { msg: 'Account with that email address already exists.'});
+        return res.redirect('/signup');
+      }
+      user.save(function(err){
+        if(err) return next(err);
+        req.logIn(user, function(err){
+          if(err) return next(err);
+          res.redirect('/mymirher');
+        });
+      });
+    });
+  },
+    function(user, done) {
+      var transporter = nodemailer.createTransport({
+        service: 'SendGrid',
+        auth: {
+          user: secrets.sendgrid.user,
+          pass: secrets.sendgrid.password
+        }
+      });
+      var mailOptions = {
+        to: user.email,
+        from: 'kpjackson27@hotmail.com',
+        subject: 'Welcome to MirHer',
+        text: 'Hello,\n\n' +
+          'This is a confirmation that ' + user.firstname + ' has successfully registered.\n'
+      };
+      transporter.sendMail(mailOptions, function(err) {
+        req.flash('success', { msg: 'You are successfully registered.' });
+        done(err);
+      });
+    }
+  ], function(err) {
+    if (err) return next(err);
+    res.redirect('/');
+  });
+};
+  
+/**
+  * GET list of users
+  *
+*/
+// Create a new controller method that retrieves a list of articles
+exports.showUsers = function(req, res) {
+  // Use the model 'find' method to get a list of articles
+  User.find().sort('-created').exec(function(err, users) {
+    if (err) {
+      req.flash('errors', {
+        msg: getErrorMessage(err)
+      });
+      return res.redirect('/');
+    } else {
+      res.format({
+        html: function() {
+          res.render('admin/users', {
+            title: 'List of Users',
+            "users": users
+          });
+        },
+        json: function() {
+          res.json(users);
+        }
+      });
+    }
+  });
+};
+/** GET list of users**/
+  	
+
+
+
  /**
   *GET /account
   * 
@@ -193,14 +255,6 @@ exports.postLogin = function(req,res,next){
       });
     };
 
-
-
-
-
-
-
-
-
  /**
   *POST /account/profile
   *Profile Page
@@ -210,10 +264,9 @@ exports.postLogin = function(req,res,next){
  		if(err) return next(err);
  		user.email = req.body.email || '';
  		user.profile.name = req.body.name || '';
- 		user.profile.gender = req.body.gender || '';
- 		user.profile.location = req.body.location || '';
- 		user.profile.website = req.body.website || '';
-
+ 		user.firstname = req.body.firstname || '';
+ 		user.lastname = req.body.lastname || '';
+ 	
  		user.save(function(err){
  			if(err) return next(err);
  			req.flash('success', { msg: 'Profile information updated.'});

@@ -128,22 +128,36 @@ exports.read = function(req, res) {
 // };
 
 // Create a new controller method that delete an existing article
-exports.delete = function(req, res) {
-	// Get the article from the 'request' object
-	var news = req.news;
-	// Use the model 'remove' method to delete the article
-	news.remove(function(err) {
-		if (err) {
-			req.flash('errors', { msg: 'Failed to delete news.'});
-			res.redirect('/admin/allnews');
+exports.deletePost = function(req, res) {
+
+	News.findById(req.id, function(err, news){
+		if(err){
+			return console.error(err);
 		} else {
-			 req.flash('success', { msg: 'news deleted.'});
-			 res.redirect('/admin/allnews');
-			// Send a JSON representation of the article 
-			// res.json(article);
+			news.remove(function(err){
+				if(err){
+					req.flash('errors', {msg: 'Failed to delete news.'});
+					res.redirect('/admin/allnews');
+				} else {
+					res.format({
+				html: function() {
+					res.render('admin/allnews', {
+						title: 'All News',
+						"news": news
+					});
+				},
+				json: function() {
+					res.json({message: 'deleted', news: news
+					});
+				}
+			});
 		}
 	});
+}
+});
+
 };
+
 
 // Create a new controller middleware that retrieves a single existing article
 exports.newsByID = function(req, res, next, id) {

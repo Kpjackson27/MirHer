@@ -24,11 +24,16 @@ module.exports = function(app){
 	// Single article
 	app.route('/api/news/:newsId')
 	   .get(news.read);
+
+	 // Single article
+	app.route('/api/news/:newsId')
+	   .delete(news.deletePost);
 	// Set up the 'articleId' parameter middleware   
 	app.param('newsId', news.newsByID);
 
 	//app.post('/uploads', articles.uploadImage);
-
+	app.route('/admin/users')
+		.get(users.showUsers);
 
 	app.route('/admin/portfolio')
 	   	.get(admin.portfolio);

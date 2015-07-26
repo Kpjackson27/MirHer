@@ -16,19 +16,17 @@ block content
 							.spacer-mini
 							h4.text-left Profile Info
 							hr.line
-							form(method='POST')
+							form(action='/account/profile',method='POST')
 								input(type='hidden', name='_csrf', value=_csrf)
 								.form-group
-									input.form-control.form-fix(name='firstname', id='firstname', type='firstname', placeholder='First Name', required)
+									input.form-control.form-fix(name='firstname', id='firstname', type='firstname', value='#{user.firstname}', required)
 								.form-group
-									input.form-control.form-fix(name='lastname', id='lastname', type='lastname', placeholder='Last Name', autocomplete='off', required)
+									input.form-control.form-fix(name='lastname', id='lastname', type='lastname', value='#{user.lastname}', autocomplete='off', required)
 								.form-group
-									input.form-control.form-fix(name='email', id='email', type='email', placeholder='#{user.email}', autocomplete='off', required)
+									input.form-control.form-fix(name='email', id='email', type='email', value='#{user.email}', autocomplete='off', required)
 									.spacer-mini
-							h4.text-left Social Info
-							hr.line
-							form(method='POST')
-								input(type='hidden', name='_csrf', value=_csrf)
+								h4.text-left Social Info
+								hr.line
 								.form-group
 									input.form-control.form-fix(name='faceboook', id='facebook', type='facebook', placeholder='Facebook')
 								.form-group

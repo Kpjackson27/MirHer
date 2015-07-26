@@ -13,6 +13,10 @@ var UserSchema = new Schema({
 		unique: true,
 		lowercase: true,
 	},
+	created: {
+		type: Date,
+		default: Date.now
+	},
 	password: {
 		type: String
 	},
@@ -44,6 +48,34 @@ var UserSchema = new Schema({
 		test: {
 			type: String,
 			default: 'test'	
+		}
+
+	},
+	address:{
+		street: {
+			type: String,
+			default:'',
+			required: true
+		},
+		apartment:{
+			type: String,
+			default: '',
+			required:true
+		},
+		city: {
+			type: String,
+			default: '',
+			required:true
+		},
+		state: {
+			type: String,
+			default: '',
+			required: true
+		},
+		zip: {
+			type: Number,
+			default:'',
+			required: true
 		}
 
 	},
