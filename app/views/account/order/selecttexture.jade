@@ -1,4 +1,4 @@
-extends ../layouts/default
+extends ../../layouts/default
 
 block content
 	.container.equal-height
@@ -9,7 +9,7 @@ block content
 			h5.title.text-center Select Texture
 			p.separator
 	.portfolio-wrapper.container
-		.portfolio.col-2(data-space='10')
+		.portfolio.col-4(data-space='10')
 			.item
 				a.item-link(href='project.html')
 					.item-img(style="background-image: url('http://www.hairandmakeupideas.com/wp-content/uploads/2015/03/curly-hair-extensions-22.jpg')")
@@ -30,5 +30,4 @@ block content
 					.item-img(style="background-image: url('http://images2.fanpop.com/images/photos/6500000/soft-pose-tyra-banks-6597397-800-600.jpg')")
 					.item-overlay
 						h5 Straight
-	.col-md-2.col-md-offset-2
 		input#submit.button.outline(type='submit', value='Select Texture')

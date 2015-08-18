@@ -33,16 +33,14 @@ html
                   a(href='/login') Login
               else 
                 li
-                  a(href='/mymirher') #{user.firstname}'s  MirHer
+                  a(href='/mymirher') #{user.profile.firstname || user.email || user.id}'s  MirHer
                   ul
                     li
-                      a(href='/account') Profile
+                      a(href='/account/me/profile') Profile
                     li
-                      a(href='/orders') Order History
+                      a(href='/account/me/orders') Order History
                     li
-                      a(href='mystylist') My Stylist
-                    li
-                      a(href='/settings') Settings
+                      a(href='/account/me/editprofile') Edit Profile
                     li
                       a(href='/logout') Logout
       include ../partials/flash

@@ -1,0 +1,71 @@
+extends ../../layouts/create
+
+block content
+	.container
+		.row
+			.col-md-12
+				h5.text-center Hi #{user.profile.firstname || user.email || user.id}
+				h5.text-center #{user}
+				h5.text-center.title.bold What is your hair type?
+				p.separator
+	.container.mrg-top-30
+		.row
+			.col-md-6.pad-40
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+			.col-md-6
+				h6.text-center.title.bold What is your hair type?
+				p.text-center (check all that apply)
+				p.separator
+				form(method='POST', action="/account/createmirher/hairtype")
+					input.form-control(type='hidden', name='_csrf', value=_csrf)
+					.col-md-3
+						.form-group
+							input(type='checkbox',  name='hairtype', id='hairtype' , value='straight', checked=(true===false ? "checked" : undefined))
+							span  straight
+						.form-group
+							input(type='checkbox',  name='hairtype', id='hairtype', value='wavy',checked=(true===false ? "checked" : undefined))
+							span  wavy
+						.form-group
+							input(type='checkbox', name='hairtype', id='hairtype', value='curly', checked=(true===false ? "checked" : undefined))
+							span  curly
+						.form-group 
+							input(type='checkbox',  name='hairtype', id='hairtype', value='mixed', checked=(true===false ? "checked" : undefined))
+							span  mixed pattern
+					.col-md-3
+						.form-group
+							input(type='checkbox',  name='hairtype', id='hairtype', value='long', checked=(true===false ? "checked" : undefined))
+							span  Long
+						.form-group
+							input(type='checkbox',  name='hairtype', id='hairtype', value='medium',checked=(true===false ? "checked" : undefined))
+							span  Medium
+						.form-group
+							input(type='checkbox', name='hairtype', id='hairtype', value='short', checked=(true===false ? "checked" : undefined))
+							span  Short
+					.col-md-5
+						.form-group 
+							input(type='checkbox',  name='hairtype', id='hairtype', value='natural', checked=(true===false ? "checked" : undefined))
+							span  Natural Hair(100% not chemically treated)
+						.form-group 
+							input(type='checkbox',  name='hairtype', id='hairtype', value='transitioning', checked=(true===false ? "checked" : undefined))
+							span  Transitioning Hair(permanently colored,relaxed,permed)
+					.col-md-12
+						.form-group
+							input(type="submit", value="Hair Health").button.outline.btn-block
+	.portfolio-wrapper.container
+		.portfolio.col-2(data-space='0')
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.hairandmakeupideas.com/wp-content/uploads/2015/03/curly-hair-extensions-22.jpg')")
+					.item-overlay
+						h5 Straight
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.freeindex.co.uk/media/listingpics/616/842/tightkinky3c4a2.jpg')")
+					.item-overlay
+						h5 Yaki Straight
+
+					.form-group
+						input(type="submit", value="Hair Type").button.outline.btn-block

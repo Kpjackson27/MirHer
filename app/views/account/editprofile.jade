@@ -1,0 +1,59 @@
+extends ../layouts/default
+
+block content
+	h4.text-center Account 
+	p.separator
+	.col-md-12.text-center
+		.tabs
+			ul.tab-nav
+				li.active
+					a.remove-link(href="/account/me/editprofile") Edit Profile  |
+				li
+					a.remove-link(href="/account/me/shipping") Shipping Address |
+				li
+					a.remove-link(href="/account/me/orders") Orders |
+				li
+					a.remove-link(href="/account/me/payment") Payment Methods 
+
+			.tab-panels
+				#tab1.active
+					.container
+						.col-md-3.col-md-offset-2
+							.spacer-mini
+							h4.text-left Profile Info
+							hr.line
+							form(action="/account/me/profile", method='POST')
+								input(type='hidden', name='_csrf', value=_csrf)
+								.form-group
+									input.form-control.form-fix(name='firstname', id='firstname', type='firstname', value='#{user.profile.firstname}', required)
+								.form-group
+									input.form-control.form-fix(name='lastname', id='lastname', type='lastname', value='#{user.profile.lastname}', autocomplete='off', required)
+								.form-group
+									input.form-control.form-fix(name='email', id='email', type='email', value='#{user.email}', autocomplete='off', required)
+								.form-group
+									input.form-control.form-fix(name='phonenumber', id='phonenumber', type='phonenumber', value='#{user.profile.phonenumber}', placeholer='Phonenumber',  required)
+									.spacer-mini
+								h4.text-left Social Info
+								hr.line
+								.form-group
+									input.form-control.form-fix(name='facebook', id='facebook', type='facebook', value='#{user.profile.facebook}', placeholder='Facebook', required)
+								.form-group
+									input.form-control.form-fix(name='twitter', id='twitter', type='twitter', value='#{user.profile.twitter}', placeholder='Twitter', autocomplete='off')
+								.form-group
+									input.form-control.form-fix(name='instagram', id='instagram', type='instagram', value='#{user.profile.instagram}', placeholder='Instagram', autocomplete='off')
+								.form-group
+									input.form-control.form-fix(name='pinterest', id='pinterest', type='pinterest', value='#{user.profile.pinterest}', placeholder='Pinterest', autocomplete='off')
+								.form-group
+									input.button.outline.btn-block(type="submit", value="Update Profile")
+						.col-md-3.col-md-offset-2
+							.spacer-mini
+							h4 Profile Image
+							p.separator
+							img.img-responsive.img-rounded(src="http://placehold.it/350x350")
+							p Upload Image
+
+
+						
+
+
+						

@@ -8,13 +8,25 @@ var mongoose = require('mongoose'),
 
 //User schema
 var UserSchema = new Schema({
+	firstname: { 
+			type: String,
+			default: ''
+		},
+		lastname: {
+			type: String,
+			default:''
+		},
 	email:{
 		type: String,
 		unique: true,
 		lowercase: true,
 	},
+	created: {
+		type: Date,
+		default: Date.now
+	},
 	password: {
-		type: String,
+		type: String
 	},
 	tokens: Array,
 
@@ -31,80 +43,90 @@ var UserSchema = new Schema({
 			type: Number,
 			default: ''
 		},
-		facebook:{
-			type:String,
-			default:''
-		},
-		twitter: {
-			type: String,
-			default:''
-		},
-		instagram: {
-			type: String,
-			default:''
-		},
-		pinterest: {
-			type: String,
-			default:''
-		},
 		picture: {
 			type: String,
 			default: ''
-		},
-		age: {
+		}
+
+	},
+	questions:{
+		age:{
 			type: String,
-			default: ''	
+			default:''
 		},
-		hairtype: {
+		hairtype:{
 			type: String,
-			default: ''
+			default:''
 		},
-		hairhealth: {
-			type: String,
-			default: ''
+		health:{
+			type:Number,
+			default:''
 		},
-		hairchallenges: { 
-			type: String,
-			default: ''
+		challenges:{
+			type:String,
+			default:''
 		},
-		weavefrequency: {
+		changefrequency:{
 			type: String,
-			default: ''
+			default:''
 		},
-		rateofpurchase: {
-			type: String,
-			default: ''
+		purchaseplace:{
+			type:String,
+			default:''
 		},
-		hairlength: { 
-			type: String,
-			default: ''
+		hairlength:{
+			type: Number,
+			default:''
 		},
-		hairtexture: {
+		hairtexture:{
 			type: String,
-			default: ''
+			default:''
 		},
-		numberofbundles: {
-			type: String,
-			default: ''
+		numbundles:{
+			type:Number,
+			default:''
 		},
-		customunits:{
-			type: String,
-			default: ''
+		custom:{
+			type:Number,
+			default:''
 		},
-		frontals: {
-			type: String,
-			default: ''
+		frontals:{
+			type:String,
+			default:''
 		},
-		colors: {
-			type: String,
-			default: ''
-		},
-		products: {
-			type: String,
+		color:{
+			type:String,
 			default:''
 		}
 	},
+	address:{
+		street: {
+			type: String,
+			default:'',
+			required: true
+		},
+		apartment:{
+			type: String,
+			default: '',
+			required:true
+		},
+		city: {
+			type: String,
+			default: '',
+			required:true
+		},
+		state: {
+			type: String,
+			default: '',
+			required: true
+		},
+		zip: {
+			type: Number,
+			default:'',
+			required: true
+		}
 
+	},
 	resetPasswordToken: String,
 	resetPasswordExpires: Date
 });
@@ -143,3 +165,4 @@ UserSchema.pre('save', function(next){
   };
 
   module.exports = mongoose.model('User', UserSchema);
+  

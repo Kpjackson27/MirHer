@@ -1,0 +1,62 @@
+extends ../../layouts/create
+
+block content
+	.container
+		.row
+			.col-md-12
+				h5.text-center Hi #{user.profile.firstname || user.email || user.id}
+				h5.text-center #{user}
+				p.separator
+	.container.mrg-top-30
+		.row
+			.col-md-6.pad-40
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+			.col-md-6.pad-60
+				h6.text-center.title.bold What color do you normally rock in your hair?
+				p.separator
+				form(method='POST', action="/account/createmirher/colors")
+					input.form-control(type='hidden', name='_csrf', value=_csrf)
+					.col-md-6
+						.form-group
+							input(type='checkbox',  name='colors', id='colors' , value='Natural Black', checked=(true===false ? "checked" : undefined))
+							span  Natural Black
+						.form-group
+							input(type='checkbox',  name='colors', id='colors', value='Jet Black',checked=(true===false ? "checked" : undefined))
+							span  Jet Black
+						.form-group
+							input(type='checkbox',  name='colors', id='colors', value='Dark Brows',checked=(true===false ? "checked" : undefined))
+							span  Dark Brows
+						.form-group
+							input(type='checkbox',  name='colors', id='colors', value='Med-light browns',checked=(true===false ? "checked" : undefined))
+							span  Med-light browns
+					.col-md-6
+						.form-group
+							input(type='checkbox',  name='colors', id='colors', value='wavy',checked=(true===false ? "checked" : undefined))
+							span  Blondes
+						.form-group
+							input(type='checkbox',  name='colors', id='colors', value='Blondes',checked=(true===false ? "checked" : undefined))
+							span  High/Platinum Blondes
+						.form-group
+							input(type='checkbox',  name='colors', id='colors', value='Reds',checked=(true===false ? "checked" : undefined))
+							span  Reds
+						.form-group
+							input(type='checkbox',  name='colors', id='colors', value='Exotic Colors',checked=(true===false ? "checked" : undefined))
+							span  Exotic Colors
+					.col-md-12
+						.form-group
+							input(type="submit", value="Products").button.outline.btn-block
+	.portfolio-wrapper.container
+		.portfolio.col-2(data-space='0')
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.hairandmakeupideas.com/wp-content/uploads/2015/03/curly-hair-extensions-22.jpg')")
+					.item-overlay
+						h5 Straight
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.freeindex.co.uk/media/listingpics/616/842/tightkinky3c4a2.jpg')")
+					.item-overlay
+						h5 Yaki Straight

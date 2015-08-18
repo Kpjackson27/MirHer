@@ -1,0 +1,16 @@
+extends ../layouts/default
+
+block content
+	h4.text-center Account 
+	p.separator
+	.col-md-12.text-center
+		.tabs
+			ul.tab-nav
+				li
+					a.remove-link(href="/account/me/editprofile") Edit Profile  |
+				li.active
+					a.remove-link(href="/account/me/shipping") Shipping Address |
+				li
+					a.remove-link(href="/account/me/orders") Orders |
+				li
+					a.remove-link(href="/account/me/payment") Payment Methods |

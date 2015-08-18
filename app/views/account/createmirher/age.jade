@@ -1,0 +1,36 @@
+extends ../../layouts/create
+
+block content
+	.container
+		.row
+			.col-md-12
+				h5.text-center Hi #{user.profile.firstname || user.email || user.id}
+				h5 #{user}
+	.container.mrg-top-30
+		.row
+			.col-md-6.pad-40
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+			.col-md-6.pad-50
+				h6.text-center.title.bold What is your age group?
+				p.separator
+				form(method='POST', action="/account/createmirher/age")
+					input.form-control(type='hidden', name='_csrf', value=_csrf)
+					.col-md-3.col-md-offset-5
+						.form-group
+							input(type='checkbox',  name='age', id='age' , value='16-21', checked=(true===false ? "checked" : undefined))
+							span  16-21
+						.form-group
+							input(type='checkbox',  name='age', id='age', value='22-28',checked=(true===false ? "checked" : undefined))
+							span  22-28
+						.form-group
+							input(type='checkbox', name='age', id='age', value='29-35', checked=(true===false ? "checked" : undefined))
+							span  29-35
+						.form-group 
+							input(type='checkbox',  name='age', id='age', value='36+', checked=(true===false ? "checked" : undefined))
+							span  36+
+					.form-group
+						input(type="submit", value="Hair Type").button.outline.btn-block
+		

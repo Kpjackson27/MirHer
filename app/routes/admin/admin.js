@@ -17,7 +17,7 @@ module.exports = function(app){
 		// Set up the 'articles' base routes 
 	app.route('/admin/news')
 		.get(news.createNews)
-		.post(passportConf.isAuthenticated, news.create);
+		.post(news.create);
 	app.route('/admin/allnews')
 	   	.get(news.list);
 	
@@ -36,10 +36,8 @@ module.exports = function(app){
 		.get(users.showUsers);
 
 	app.route('/admin/portfolio')
-	   	.get(admin.portfolio);
-
-	app.route('/upload')
-		.post(admin.upload);
+		.get(admin.portfolio)
+		.post(admin.addImage);
 
 };
 

@@ -1,0 +1,51 @@
+extends ../../layouts/create
+
+block content
+	.container
+		.row
+			.col-md-12
+				h5.text-center Hi #{user.profile.firstname || user.email || user.id}
+				h5.text-center #{user}
+	.container.mrg-top-30
+		.row
+			.col-md-6.pad-40
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+			.col-md-6
+				h6.text-center.title.bold How Often Do You Purchase New Hair Extensions?
+				p.separator
+				form(method='POST', action="/account/createmirher/rateofpurchase")
+					input.form-control(type='hidden', name='_csrf', value=_csrf)
+					.col-md-6.col-md-offset-4
+						.form-group
+							input(type='checkbox',  name='rateofpurchase', id='rateofpurchase' , value='every new installation', checked=(true===false ? "checked" : undefined))
+							span  every new installation
+						.form-group
+							input(type='checkbox', name='rateofpurchase', id='rateofpurchase', value='every other new installation',checked=(true===false ? "checked" : undefined))
+							span  every other new installation
+						.form-group
+							input(type='checkbox', name='rateofpurchase', id='rateofpurchase', value='every 3-4 installations', checked=(true===false ? "checked" : undefined))
+							span  every 3-4 installations
+						.form-group 
+							input(type='checkbox',  name='rateofpurchase', id='rateofpurchase', value='As needed', checked=(true===false ? "checked" : undefined))
+							span  As needed
+					.col-md-12
+						.form-group
+							input(type="submit", value="Hair Length").button.outline.btn-block
+	.portfolio-wrapper.container
+		.portfolio.col-2(data-space='0')
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.hairandmakeupideas.com/wp-content/uploads/2015/03/curly-hair-extensions-22.jpg')")
+					.item-overlay
+						h5 Straight
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.freeindex.co.uk/media/listingpics/616/842/tightkinky3c4a2.jpg')")
+					.item-overlay
+						h5 Yaki Straight
+
+					.form-group
+						input(type="submit", value="Hair Type").button.outline.btn-block

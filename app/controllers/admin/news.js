@@ -3,7 +3,12 @@
 
 // Load the module dependencies
 var mongoose = require('mongoose'),
-	News = mongoose.model('News');
+	News = mongoose.model('News'),
+	cloudinary = require('cloudinary'),
+	fs = require('fs');
+
+
+	
 
 // Create a new error handling controller method
 var getErrorMessage = function(err) {

@@ -1,0 +1,28 @@
+extends ../../layouts/create
+
+block content
+	.container
+		.row
+			.col-md-12
+				h5.text-center Congratulations Your Are Finished
+				p.separator
+	.container
+		.row
+			.col-md-6.col-md-offset-5
+				h6 Name: #{user.profile.firstname} #{user.profile.lastname}
+				h6 Email: #{user.email}
+				h6 Age Group: #{user.profile.age}
+				h6 Hair Type: #{user.profile.hairtype}
+				h6 Hair Health: #{user.profile.hairhealth}/10
+				h6 Hair Challenges : #{user.profile.hairchallenges}
+				h6 Weave Frequency: #{user.profile.weavefrequency}
+				h6 Rate of Purchase: #{user.profile.rateofpurchase}
+				h6 Hair Length: #{user.profile.hairlength}
+				h6 Hair Texture: #{user.profile.hairtexture}
+				h6 Number of Bundles: #{user.profile.numberofbundles}
+				h6 Custom Units: #{user.profile.customunits}
+				h6 Frontals: #{user.profile.frontals}
+				h6 Colors: #{user.profile.colors}
+				h6 Products: #{user.profile.products}
+			.col-md-2.col-md-offset-5
+				a(href="/mymirher").button.outline.btn-block Discover

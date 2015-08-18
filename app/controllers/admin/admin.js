@@ -1,7 +1,8 @@
 'use strict';
 
-var cloudinary = require('cloudinary').v2,
+var cloudinary = require('cloudinary'),
 	fs = require('fs');
+
 
 //Create a new 'render' controller method
 exports.main = function(req,res){
@@ -22,18 +23,15 @@ exports.users = function(req,res){
 	});
 };
 
-exports.portfolio = function(req,res, next){
-	cloudinary.api.resource(function(items){
-		res.render('admin/portfolio', {
-			images: items.resource, title: 'Gallery', cloudinary: cloudinary
-		});
+exports.portfolio = function(req,res){
+	cloudinary.api.resources(function(items){
+		res.render('admin/portfolio', { images: items.resources, cloudinary: cloudinary });
 	});
 };
 
-exports.upload = function(req,res){
-		var imageStream = fs.createReadStream(req.files.image.path, { encoding: 'binary'}),
-			cloudStream = cloudinary.uploader.upload_stream(function() {
-			res.redirect('/'); });
+exports.addImage = function(req,res){
+	var imageStream = fs.createReadStream(req.files.image.path, { encoding: 'binary' }),
+		cloudStream = cloudinary.uploader.upload_stream(function() { res.redirect('/portfolio'); });
 
-			imageStream.on('data', cloudStream.write).on('end', cloudStream.end);
-	};
+	imageStream.on('data', cloudStream.write).on('end', cloudStream.end);
+};

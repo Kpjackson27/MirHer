@@ -14,6 +14,68 @@ module.exports = function(app){
 		.get(users.getSignup)
 		.post(users.postSignup);
 
+	app.route('/account/createmirher')
+		.get(passportConf.isAuthenticated,users.createmirher);
+
+	app.route('/account/createmirher/name')
+		.get(passportConf.isAuthenticated,users.addName)
+		.post(passportConf.isAuthenticated, users.postUpdateName);
+
+	app.route('/account/createmirher/age')
+		.get(passportConf.isAuthenticated,users.getAge)
+		.post(passportConf.isAuthenticated,users.postAge);
+
+	app.route('/account/createmirher/hairtype')
+		.get(passportConf.isAuthenticated,users.hairtype)
+		.post(passportConf.isAuthenticated,users.postHairType);
+
+	app.route('/account/createmirher/hairhealth')
+		.get(passportConf.isAuthenticated,users.hairhealth)
+		.post(passportConf.isAuthenticated,users.postHairHealth);
+
+	app.route('/account/createmirher/hairlength')
+		.get(passportConf.isAuthenticated,users.hairlength)
+		.post(passportConf.isAuthenticated, users.postHairLength);
+
+	app.route('/account/createmirher/hairchallenges')
+		.get(passportConf.isAuthenticated,users.hairchallenges)
+		.post(passportConf.isAuthenticated,users.postHairChallenges);
+
+	app.route('/account/createmirher/hairtexture')
+		.get(passportConf.isAuthenticated,users.hairtexture)
+		.post(passportConf.isAuthenticated, users.postHairTexture);
+
+	app.route('/account/createmirher/rateofpurchase')
+		.get(passportConf.isAuthenticated,users.rateofpurchase)
+		.post(passportConf.isAuthenticated,users.postRateOfPurchase);
+
+	app.route('/account/createmirher/quantityofpurchase')
+		.get(passportConf.isAuthenticated,users.quantityofpurchase)
+		.post(passportConf.isAuthenticated, users.postNumberOfBundles);
+
+	app.route('/account/createmirher/customunits')
+		.get(passportConf.isAuthenticated,users.customunits)
+		.post(passportConf.isAuthenticated, users.postCustomUnits);
+
+	app.route('/account/createmirher/frontals')
+		.get(passportConf.isAuthenticated,users.frontals)
+		.post(passportConf.isAuthenticated, users.postFrontals);
+
+	app.route('/account/createmirher/frequency')
+		.get(passportConf.isAuthenticated,users.frequency)
+		.post(passportConf.isAuthenticated,users.postHairFrequency);
+
+	app.route('/account/createmirher/colors')
+		.get(passportConf.isAuthenticated,users.colors)
+		.post(passportConf.isAuthenticated, users.postColors);
+
+	app.route('/account/createmirher/products')
+		.get(passportConf.isAuthenticated,users.products)
+		.post(passportConf.isAuthenticated, users.postProducts);
+
+	app.route('/account/createmirher/complete')
+		.get(passportConf.isAuthenticated, users.congrats);
+
 	//setup the 'login routes'
 	app.route('/login')
 		.get(users.getLogin)
@@ -33,35 +95,36 @@ module.exports = function(app){
 		.post(users.postReset);
 
 	//setup the 'account' routes
-	app.route('/account')
+	app.route('/account/me/profile')
 		.get(passportConf.isAuthenticated, users.getAccount);
 
+
 	//setup the 'account' routes
-	app.route('/settings')
-		.get(passportConf.isAuthenticated, users.settings);
+	app.route('/account/me/editprofile')
+		.get(passportConf.isAuthenticated, users.editprofile)
+		.post(passportConf.isAuthenticated, users.postUpdateProfile);
 
 	//setup the 'account' routes
 	app.route('/mystylist')
 		.get(passportConf.isAuthenticated, users.mystylist);
 
 	//setup the 'account' routes
-	app.route('/request')
-		.get(passportConf.isAuthenticated, users.request);
-
+	app.route('/account/order/selecttype')
+		.get(passportConf.isAuthenticated, users.selecttype);
 
 	//setup the 'account' routes
-	app.route('/texture')
+	app.route('/account/order/selecttexture')
 		.get(passportConf.isAuthenticated, users.texture);
-		//setup the 'account' routes
-	app.route('/lengths')
+	//setup the 'account' routes
+	app.route('/account/order/selectlengths')
 		.get(passportConf.isAuthenticated, users.lengths);
 
-			//setup the 'account' routes
-	app.route('/extras')
+	//setup the 'account' routes
+	app.route('/account/order/selectextra')
 		.get(passportConf.isAuthenticated, users.extras);
 
-			//setup the 'account' routes
-	app.route('/finalize')
+	//setup the 'account' routes
+	app.route('/account/order/finalize')
 		.get(passportConf.isAuthenticated, users.finalize);
 
 	//setup the 'mirher' routes
@@ -69,8 +132,8 @@ module.exports = function(app){
 		.get(passportConf.isAuthenticated, users.getMyMirher);
 
 	//setup the 'account profile' routes
-	app.route('/account/profile')
-		.post(passportConf.isAuthenticated, users.postUpdateProfile);
+	//app.route('/account/settings/profile')
+	//	.post(passportConf.isAuthenticated, users.postUpdateProfile);
 
 	//setup the 'account password' routes
 	app.route('/account/password')

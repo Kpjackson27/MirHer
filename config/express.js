@@ -36,18 +36,6 @@ module.exports = function(db) {
 	//create new express application instance
 	var app = express();
 
-	
-		cloudinary.config({
-		cloud_name:	'db433n5ld',
-		api_key: '377644565826279',	
-		api_secret:	'XAr35npXOawwUgk8M6KKPIWDszY'
-	});
-
-app.locals.api_key = cloudinary.config().api_key;
-app.locals.cloud_name = cloudinary.config().cloud_name;
-
-
-
 	//Use the 'NODE_ENV' variable to activate the 'morgan' logger or 'compress' middleware
 	if(process.env.NODE_ENV === 'development'){
 		app.use(morgan('dev'));
@@ -99,6 +87,13 @@ app.locals.cloud_name = cloudinary.config().cloud_name;
 		xssProtection: true
 	}));
 
+		cloudinary.config({ 
+			cloud_name: 'ddggjtvut', 
+			api_key: '936692975464755', 
+			api_secret: 'wU0i7hVoqbl2bKBpXU59JEPaWhU' 
+		});
+
+
 
 	//Configure passport middleware
 	app.use(passport.initialize());
@@ -120,6 +115,7 @@ app.locals.cloud_name = cloudinary.config().cloud_name;
 	require('../app/routes/post.js')(app);
 	require('../app/routes/orders.js')(app);
 	require('../app/routes/admin/admin.js')(app);
+	require('../app/routes/shipping.js')(app);
 
 	//render static files
 	app.use(express.static('./public'));

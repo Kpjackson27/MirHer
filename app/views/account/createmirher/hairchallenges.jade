@@ -1,0 +1,67 @@
+extends ../../layouts/create
+
+block content
+	.container
+		.row
+			.col-md-12
+				h5.text-center Hi #{user.profile.firstname || user.email || user.id}
+				h5.text-center #{user}
+				p.separator
+	.container.mrg-top-30
+		.row
+			.col-md-6.pad-40
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+			.col-md-6
+				h6.text-center.title.bold Are you experiencing challanges with your hair?
+				p.text-center (check all that apply)
+				p.separator
+				form(method='POST', action="/account/createmirher/hairchallenges")
+					input.form-control(type='hidden', name='_csrf', value=_csrf)
+					.col-md-4
+						.form-group
+							input(type='checkbox',  name='hairchallenges', id='hairchallenges' , value='slow growth', checked=(true===false ? "checked" : undefined))
+							span   slow growth
+						.form-group
+							input(type='checkbox',  name='hairchallenges', id='hairchallenges' , value='breakage from chemical and or/heat damage',checked=(true===false ? "checked" : undefined))
+							span   breakage from chemical and or/heat damage
+						.form-group
+							input(type='checkbox', name='hairchallenges', id='hairchallenges' , value='split ends', checked=(true===false ? "checked" : undefined))
+							span   split ends
+					.col-md-4
+						.form-group 
+							input(type='checkbox',  name='hairchallenges', id='hairchallenges' , value='dry/itchy scalp', checked=(true===false ? "checked" : undefined))
+							span   dry/itchy scalp
+						.form-group
+							input(type='checkbox',  nname='hairchallenges', id='hairchallenges'  , value='hair loss/bald spots', checked=(true===false ? "checked" : undefined))
+							span   hair loss/bald spots
+						.form-group
+							input(type='checkbox',  name='hairchallenges', id='hairchallenges' , value='alopecia',checked=(true===false ? "checked" : undefined))
+							span   alopecia
+					.col-md-4
+						.form-group
+							input(type='checkbox', name='hairchallenges', id='hairchallenges' , value='chemotherapy', checked=(true===false ? "checked" : undefined))
+							span  chemotherapy
+						.form-group 
+							input(type='checkbox',  name='hairchallenges', id='hairchallenges' , value='Discolored greys/blondes', checked=(true===false ? "checked" : undefined))
+							span  discolored greys/blondes
+						.form-group 
+							input(type='checkbox',  name='hairchallenges', id='hairchallenges' , value='Thinning/hairline', checked=(true===false ? "checked" : undefined))
+							span   Thinning/hairline
+					.col-md-12
+						.form-group
+							input(type="submit", value="Weave Frequency").button.outline.btn-block
+	.portfolio-wrapper.container
+		.portfolio.col-2(data-space='0')
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.hairandmakeupideas.com/wp-content/uploads/2015/03/curly-hair-extensions-22.jpg')")
+					.item-overlay
+						h5 Straight
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.freeindex.co.uk/media/listingpics/616/842/tightkinky3c4a2.jpg')")
+					.item-overlay
+						h5 Yaki Straight

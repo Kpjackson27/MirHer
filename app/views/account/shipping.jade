@@ -1,19 +1,44 @@
-.spacer-mini
-h4.text-center Shipping Addresses
-p.separator
-form(method='POST')
-	input(type='hidden', name='_csrf', value=_csrf)
-	.form-group
-		input.form-control.form-fix(name='street', id='street', type='street', placeholder='Street Address', autocomplete='off', required)
-	.form-group
-		input.form-control.form-fix(name='apt', id='apt', type='apt', placeholder='Apt, floor, suite', autocomplete='off', required)
-	.form-group
-		input.form-control.form-fix(name='city', id='city', type='city', placeholder='City', autocomplete='off', required)
-	.form-group
-		input.form-control.form-fix(name='state', id='state', type='state', placeholder='State', autocomplete='off', required)
-	.form-group
-		input.form-control.form-fix(name='zip', id='zip', type='zip', placeholder='Zip', autocomplete='off', required)
-	.form-group
-		input.button.outline.btn-block(type="submit", value="Add Address") 
+extends ../layouts/default
 
-
+block content
+	h4.text-center Account 
+	p.separator
+	.col-md-12.text-center
+		.tabs
+			ul.tab-nav
+				li
+					a.remove-link(href="/account/me/editprofile") Edit Profile  |
+				li.active
+					a.remove-link(href="/account/me/shipping") Shipping Address |
+				li
+					a.remove-link(href="/account/me/orders") Orders |
+				li
+					a.remove-link(href="/account/me/payment") Payment Methods
+			.tab-panels
+				#tab2.active
+					.container
+						.spacer-mini
+						h4.text-center Shipping Address
+						.spacer-mini
+						p.separator
+						.spacer-mini
+						.col-md-3.col-md-offset-3.pad-0.overflow
+							form(method='POST', action='/settings')
+								input(type='hidden', name='_csrf', value=_csrf)
+							.form-group
+								input.form-control.form-fix(name='street', id='street', type='street', placeholder='Street Address', autocomplete='off', required)
+							.form-group
+								input.form-control.form-fix(name='apartment', id='apartment', type='apartment', placeholder='Apt, floor, suite', autocomplete='off', required)
+							.form-group
+								input.form-control.form-fix(name='city', id='city', type='city', placeholder='City', autocomplete='off', required)
+							.form-group
+								input.form-control.form-fix(name='state', id='state', type='state', placeholder='State', autocomplete='off', required)
+							.form-group
+								input.form-control.form-fix(name='zip', id='zip', type='zip', placeholder='Zip', autocomplete='off', required)
+							.form-group
+								input.button.outline.btn-block(type="submit", value="Add Address")
+						.col-md-4.col-md-offset-2
+							p Kareem Phillip-Jackson
+							p 606 Auburn Ave
+							p Melbourne, FL
+							p 32901

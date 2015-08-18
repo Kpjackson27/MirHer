@@ -1,0 +1,73 @@
+extends ../../layouts/create
+
+block content
+	.container
+		.row
+			.col-md-12
+				h5.text-center Hi #{user.profile.firstname || user.email || user.id}
+				h5.text-center #{user}
+				p.separator
+	.container.mrg-top-30
+		.row
+			.col-md-6.pad-40
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+			.col-md-6
+				h6.text-center.title.bold What is your favorite hair texture & Type?
+				p.text-center (Choose All That Apply)
+				p.separator
+				form(method='POST', action="/account/createmirher/hairtexture")
+					input.form-control(type='hidden', name='_csrf', value=_csrf)
+					.col-md-3
+						.form-group
+							input(type='checkbox',  name='hairtexture', id='hairtexture' , value='Straight', checked=(true===false ? "checked" : undefined))
+							span  Straight
+						.form-group
+							input(type='checkbox',  name='hairtexture', id='hairtexture', value='Yaki Straight',checked=(true===false ? "checked" : undefined))
+							span  Yaki Straight
+						.form-group
+							input(type='checkbox',name='hairtexture', id='hairtexture', value='Wavy', checked=(true===false ? "checked" : undefined))
+							span  Wavy
+					.col-md-3
+						.form-group 
+							input(type='checkbox',  name='hairtexture', id='hairtexture', value='Deep Wavy', checked=(true===false ? "checked" : undefined))
+							span  Deep Wavy
+						.form-group 
+							input(type='checkbox',  name='hairtexture', id='hairtexture', value='Curly', checked=(true===false ? "checked" : undefined))
+							span  Curly
+						.form-group
+							input(type='checkbox', name='hairtexture', id='hairtexture', value='Kinky Curly', checked=(true===false ? "checked" : undefined))
+							span  Kinky Curly
+					.col-md-3
+						.form-group 
+							input(type='checkbox',  name='hairtexture', id='hairtexture', value='Peruvian', checked=(true===false ? "checked" : undefined))
+							span  Peruvian
+						.form-group 
+							input(type='checkbox', name='hairtexture', id='hairtexture', value='Indian', checked=(true===false ? "checked" : undefined))
+							span  Indian
+						.form-group
+							input(type='checkbox',  name='hairtexture', id='hairtexture' , value='Malaysian', checked=(true===false ? "checked" : undefined))
+							span  Malaysian
+						.form-group
+							input(type='checkbox', name='hairtexture', id='hairtexture', value='Russian', checked=(true===false ? "checked" : undefined))
+							span  Russian
+						.form-group
+							input(type='checkbox',  name='hairtexture', id='hairtexture' , value='Brazillian', checked=(true===false ? "checked" : undefined))
+							span  Brazillian
+					.col-md-12
+						.form-group
+							input(type="submit", value="Number of Bundles").button.outline.btn-block
+	.portfolio-wrapper.container
+		.portfolio.col-2(data-space='0')
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.hairandmakeupideas.com/wp-content/uploads/2015/03/curly-hair-extensions-22.jpg')")
+					.item-overlay
+						h5 Straight
+			.item
+				a.item-link(href='project.html')
+					.item-img(style="background-image: url('http://www.freeindex.co.uk/media/listingpics/616/842/tightkinky3c4a2.jpg')")
+					.item-overlay
+						h5 Yaki Straight

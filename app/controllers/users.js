@@ -7,6 +7,7 @@ var _ = require('lodash'),
 	nodemailer = require('nodemailer'),
 	User = require('../models/User'),
   Article = require('../models/News'),
+  Shipping = require('../models/Shipping'),
   secrets = require('../../config/secrets');
 
 
@@ -91,6 +92,9 @@ exports.postLogin = function(req,res,next){
  	});
  };
 
+
+
+
  /**
   * POST /signup
   * Create a new local account
@@ -98,8 +102,6 @@ exports.postLogin = function(req,res,next){
   exports.postSignup = function(req, res, next){
   	req.assert('email', 'Email is not valid').isEmail();
   	req.assert('password', 'Password must be at least 4 characters long').len(4);
-    req.assert('firstname', 'First name cannot be left blank').notEmpty();
-    req.assert('lastname', 'Last name cannot be left blank').notEmpty();
   	req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
   	var errors = req.validationErrors();
@@ -110,16 +112,12 @@ exports.postLogin = function(req,res,next){
   	}
 
   	var user = new User({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
   		email: req.body.email,
   		password: req.body.password
   	});
 
 
-    async.waterfall([
-    function(done) {
-      User.findOne({email: req.body.email}, function(err, existingUser){
+     User.findOne({email: req.body.email}, function(err, existingUser){
       if(existingUser){
         req.flash('errors', { msg: 'Account with that email address already exists.'});
         return res.redirect('/signup');
@@ -128,36 +126,11 @@ exports.postLogin = function(req,res,next){
         if(err) return next(err);
         req.logIn(user, function(err){
           if(err) return next(err);
-          res.redirect('/mymirher');
+          res.redirect('/account/createmirher');
         });
       });
     });
-  },
-    function(user, done) {
-      var transporter = nodemailer.createTransport({
-        service: 'SendGrid',
-        auth: {
-          user: secrets.sendgrid.user,
-          pass: secrets.sendgrid.password
-        }
-      });
-      var mailOptions = {
-        to: user.email,
-        from: 'kpjackson27@hotmail.com',
-        subject: 'Welcome to MirHer',
-        text: 'Hello,\n\n' +
-          'This is a confirmation that ' + user.firstname + ' has successfully registered.\n'
-      };
-      transporter.sendMail(mailOptions, function(err) {
-        req.flash('success', { msg: 'You are successfully registered.' });
-        done(err);
-      });
-    }
-  ], function(err) {
-    if (err) return next(err);
-    res.redirect('/');
-  });
-};
+  };
   
 /**
   * GET list of users
@@ -189,9 +162,6 @@ exports.showUsers = function(req, res) {
 };
 /** GET list of users**/
   	
-
-
-
  /**
   *GET /account
   * 
@@ -202,15 +172,104 @@ exports.showUsers = function(req, res) {
       });
     };
 
+    /***************************************
+      * User settings
+      * 1-Profile Information
+      * 2-Shipping Information
+      * 3-Credit Card Information
+    ****************************************/
+
+    /**************SETTINGS****************/
+
     /**
       *Get settings page
       *
     */
-    exports.settings = function(req,res){
-      res.render('account/settings', {
-          title: 'Settings'
+    exports.editprofile = function(req,res){
+      res.render('account/editprofile', {
+          title: 'Edit Profile'
       });
     };
+
+
+    /**************SETTINGS/PROFILE END****************/
+     /**
+      * Create New User Profile Information
+      *
+    */
+    
+    /**
+      * Update User Profile Information
+      *
+    */
+
+    /**
+      * Delete User Profile Information
+      *
+    */
+
+    /**
+      * Show User Profile Information
+      *
+    */
+
+    /**
+      * Update User Profile Information
+      *
+    */
+      exports.postUpdateProfile = function(req, res, next){
+        User.findById(req.user.id, function(err,user){
+          if(err) return next(err);
+            user.profile.firstname = req.body.firstname || '';
+            user.profile.lastname = req.body.lastname || '';
+            user.profile.phonenumber = req.body.phonenumber || '';
+            user.email = req.body.email || '';
+            user.profile.facebook = req.body.facebook || '';
+            user.profile.twitter = req.body.twitter || '';
+            user.profile.instagram = req.body.instagram || '';
+            user.profile.pinterest = req.body.pinterest || '';
+
+            user.save(function(err){
+              if(err) return next(err);
+              req.flash('success', { msg: 'Profile information updated.'});
+              res.redirect('/account/me/editprofile');
+            });
+          });
+         };  
+    /**************SETTINGS/PROFILE END****************/
+
+    /**************SETTINGS/CREDIT CARD****************/
+
+     /**
+      * Create New User Credit Card Information
+      *
+    */
+
+    /**
+      * Update User Credit Card Information
+      *
+    */
+
+    /**
+      * Delete User Credit Card Information
+      *
+    */
+
+    /**
+      * Show User Credit Card  Information
+      *
+    */
+
+    /**
+      * Update User Credit Card Information
+      *
+    */
+    /**************SETTINGS/CREDIT CARD END****************/
+
+    /**************SETTINGS END****************/
+
+
+
     /**
       *Get stylist page
       *
@@ -220,60 +279,424 @@ exports.showUsers = function(req, res) {
           title: 'My Stylist'
       });
     };
-    /**
-      * Get request page
-      *
-    */
-    exports.request = function(req,res){
-      res.render('account/request', {
-        title: 'Request Chest'
+   
+    /**************ORDER INFORMATION***************/
+
+    exports.selecttype = function(req,res){
+      res.render('account/order/selecttype', {
+        title: 'Select Type'
       });
     };
 
     exports.texture = function(req,res){
-      res.render('account/texture', {
+      res.render('account/order/selecttexture', {
         title: 'Select Texture'
       });
     };
 
 
     exports.lengths = function(req,res){
-      res.render('account/lengths', {
+      res.render('account/order/selectlengths', {
         title: 'Select Length'
       });
     };
 
     exports.extras = function(req,res){
-      res.render('account/extras', {
+      res.render('account/order/selectextra', {
         title: 'Extras'
       });
     };
 
      exports.finalize = function(req,res){
-      res.render('account/finalize', {
-        title: 'Finalize'
+      res.render('account/order/finalize', {
+        title: 'Finalize Chest'
       });
     };
 
- /**
+    /**************ORDER INFORMATION END***************/
+
+     /**************CREATE MIRHER***************/
+
+  exports.createmirher = function(req, res){
+  res.render('account/createmirher', {
+    title: 'Create Your Mirher'
+  });
+ };   
+
+  exports.addName = function(req, res){
+  res.render('account/createmirher/name', {
+    title: 'Create Your Mirher'
+  });
+ };
+
+  /**
   *POST /account/profile
   *Profile Page
  */
- exports.postUpdateProfile = function(req, res, next){
- 	User.findById(req.user.id, function(err,user){
- 		if(err) return next(err);
- 		user.email = req.body.email || '';
- 		user.profile.name = req.body.name || '';
- 		user.firstname = req.body.firstname || '';
- 		user.lastname = req.body.lastname || '';
- 	
- 		user.save(function(err){
- 			if(err) return next(err);
- 			req.flash('success', { msg: 'Profile information updated.'});
- 			res.redirect('/account');
- 		});
- 	});
+ exports.postUpdateName = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.firstname = req.body.firstname || '';
+    user.profile.lastname = req.body.lastname || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/age');
+    });
+  });
+ };   
+
+  exports.getAge = function(req, res){
+  res.render('account/createmirher/age', {
+    title: 'Select Age Group'
+  });
  };
+
+  exports.postAge = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.age = req.body.age || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/hairtype');
+    });
+  });
+ };  
+
+
+    exports.hairtype = function(req,res){
+      res.render('account/createmirher/hairtype', {
+        title: 'Select Hair Type'
+      });
+    };
+
+  exports.postHairType = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.hairtype = req.body.hairtype || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/hairhealth');
+    });
+  });
+ };  
+
+
+
+    exports.hairhealth = function(req,res){
+      res.render('account/createmirher/hairhealth', {
+        title: 'Hair Health'
+      });
+    };
+
+  exports.postHairHealth = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.hairhealth = req.body.hairhealth || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/hairchallenges');
+    });
+  });
+ };  
+
+    exports.hairchallenges = function(req,res){
+      res.render('account/createmirher/hairchallenges', {
+        title: 'Hair Challenges'
+      });
+    };
+
+  exports.postHairChallenges = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.hairchallenges = req.body.hairchallenges || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/frequency');
+    });
+  });
+ };  
+
+    exports.frequency = function(req,res){
+      res.render('account/createmirher/weavefrequency', {
+        title: 'Weave Frequency'
+      });
+    };
+
+exports.postHairFrequency = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.weavefrequency = req.body.weavefrequency || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/rateofpurchase');
+    });
+  });
+ };  
+
+
+
+     exports.rateofpurchase = function(req,res){
+      res.render('account/createmirher/rateofpurchase', {
+        title: 'Rate of Purchase'
+      });
+    };
+
+    exports.postRateOfPurchase = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.rateofpurchase = req.body.rateofpurchase || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/hairlength');
+    });
+  });
+ };  
+
+
+
+    exports.hairlength = function(req,res){
+      res.render('account/createmirher/hairlength', {
+        title: 'Hair Length'
+      });
+    };
+
+  exports.postHairLength = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.hairlength = req.body.hairlength || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/hairtexture');
+    });
+  });
+ };  
+
+    exports.hairtexture = function(req,res){
+      res.render('account/createmirher/hairtexture', {
+        title: 'Hair Texture'
+      });
+    };
+
+  exports.postHairTexture = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.hairtexture = req.body.hairtexture || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/quantityofpurchase');
+    });
+  });
+ };  
+
+
+     exports.quantityofpurchase = function(req,res){
+      res.render('account/createmirher/quantityofpurchase', {
+        title: 'Quantity of Purchase'
+      });
+    };
+
+
+  exports.postNumberOfBundles = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.numberofbundles = req.body.numberofbundles || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/customunits');
+    });
+  });
+ };  
+
+     exports.customunits = function(req,res){
+      res.render('account/createmirher/customunits', {
+        title: 'Custom Units'
+      });
+    };
+
+  exports.postCustomUnits = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.customunits = req.body.customunits || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/frontals');
+    });
+  });
+ };  
+
+     exports.frontals = function(req,res){
+      res.render('account/createmirher/frontals', {
+        title: 'Frontals/Closures'
+      });
+    };
+
+  exports.postFrontals = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.frontals = req.body.frontals|| '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/colors');
+    });
+  });
+ };  
+     exports.colors = function(req,res){
+      res.render('account/createmirher/color', {
+        title: 'Colors'
+      });
+    };
+
+  exports.postColors = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.colors = req.body.colors || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/products');
+    });
+  });
+ };  
+
+    exports.products = function(req,res){
+      res.render('account/createmirher/products', {
+        title: 'Products/Tools'
+      });
+    };
+
+  exports.postProducts = function(req, res, next){
+  User.findById(req.user.id, function(err,user){
+    if(err) return next(err);
+    user.profile.products = req.body.products || '';
+  
+    user.save(function(err){
+      if(err) return next(err);
+      req.flash('success', { msg: 'Profile information updated.'});
+      res.redirect('/account/createmirher/complete');
+    });
+  });
+ }; 
+
+  exports.congrats = function(req,res){
+      res.render('account/createmirher/complete', {
+        title: 'Complete'
+      });
+    };
+
+
+  /**************CREATE MIRHER END***************/
+  
+//create a new address
+exports.addAddress = function(req, res) {
+  // Create a new address object
+  var shipping = new Shipping(req.body);
+
+  //set creator property for shipping address 
+  shipping.creator = req.user;
+
+  // Try saving the address
+  shipping.save(function(err) {
+    if (err) {
+      req.flash('errors', {
+        msg: getErrorMessage(err)
+      });
+      return res.redirect('/account/me/shipping');
+    } else {
+      req.flash('success', { msg: 'Shipping Address added'});
+      return res.redirect('/account/me/shipping');
+    }
+  });
+};
+
+
+
+
+
+
+    /**************SETTINGS/SHIPPING****************/
+
+    /**
+      * Create New User Shipping Information
+      *
+    */
+    
+
+
+
+    /**
+      * Update User Shipping Information
+      *
+    */
+    
+
+    /**
+      * Delete User Shipping Information
+      *
+    */
+
+    /**
+      * Show User Shipping Information
+      *
+    */
+
+exports.getAddress = function(req, res) {
+  // Use the model 'find' method to get a list of articles
+  Shipping.find().sort('-creator').populate('creator', 'email profile profile.').exec(function(err, shipping) {
+    if (err) {
+      req.flash('errors', {
+        msg: getErrorMessage(err)
+      });
+      return res.redirect('/account/me/shipping');
+    } else {
+      res.format({
+        html: function() {
+          res.render('account/me/shipping', {
+            title: 'Shipping Address',
+            "shipping": shipping
+          });
+        },
+        json: function() {
+          res.json(shipping);
+        }
+      });
+    }
+  });
+};
+
+
+    /**
+      * Update User Shipping Information
+      *
+    */
+    /**************SETTINGS/SHIPPING****************/
+    
+
+
 
  /**
   * POST /acount/password
@@ -297,7 +720,7 @@ exports.showUsers = function(req, res) {
  		user.save(function(err){
  			if(err) return next(err);
  			req.flash('success', { msg: 'Password has been changed.'});
- 			res.redirect('/account');
+ 			res.redirect('/account/me/profile');
  		});
  	});
  };
@@ -329,7 +752,7 @@ exports.getOauthUnlink = function(req, res, next) {
     user.save(function(err) {
       if (err) return next(err);
       req.flash('info', { msg: provider + ' account has been unlinked.' });
-      res.redirect('/account');
+      res.redirect('/account/me/profile');
     });
   });
 };

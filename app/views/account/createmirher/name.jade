@@ -1,0 +1,25 @@
+extends ../../layouts/create
+
+block content
+	.container
+		.row
+			.col-md-12
+				h5.text-center Hi #{user.profile.firstname || user.email || user.id}
+	.container.mrg-top-30
+		.row
+			.col-md-6.pad-40
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+				p
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error quam consequuntur, rerum natus similique dolorum corporis deserunt iusto consequatur omnis esse repellendus ipsa fugiat. Maxime assumenda, vero eveniet. Assumenda.
+			.col-md-6.pad-50
+				h5.text-center.title.bold What is your name?
+				p.separator
+				form(method='POST')
+					input.form-control(type='hidden', name='_csrf', value=_csrf)
+					.form-group
+						input.form-control.form-fix(type="firstname", id="firstname", name="firstname", placeholder="Firstname", required)
+					.form-group
+						input.form-control.form-fix(name="lastname", id="lastname", type="lastname", placeholder="Lastname", required)
+					.form-group
+						input.button.outline.btn-block(type="submit", value="HAIR TYPE") 
