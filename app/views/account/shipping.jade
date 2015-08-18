@@ -23,22 +23,25 @@ block content
 						p.separator
 						.spacer-mini
 						.col-md-3.col-md-offset-3.pad-0.overflow
-							form(method='POST', action='/settings')
+							form(method='POST', action='/account/me/shipping')
 								input(type='hidden', name='_csrf', value=_csrf)
-							.form-group
-								input.form-control.form-fix(name='street', id='street', type='street', placeholder='Street Address', autocomplete='off', required)
-							.form-group
-								input.form-control.form-fix(name='apartment', id='apartment', type='apartment', placeholder='Apt, floor, suite', autocomplete='off', required)
-							.form-group
-								input.form-control.form-fix(name='city', id='city', type='city', placeholder='City', autocomplete='off', required)
-							.form-group
-								input.form-control.form-fix(name='state', id='state', type='state', placeholder='State', autocomplete='off', required)
-							.form-group
-								input.form-control.form-fix(name='zip', id='zip', type='zip', placeholder='Zip', autocomplete='off', required)
-							.form-group
-								input.button.outline.btn-block(type="submit", value="Add Address")
+								.form-group
+									input.form-control.form-fix(name='street', id='street', type='street', placeholder='Street Address', autocomplete='off', required)
+								.form-group
+									input.form-control.form-fix(name='apartment', id='apartment', type='apartment', placeholder='Apt, floor, suite', autocomplete='off', required)
+								.form-group
+									input.form-control.form-fix(name='city', id='city', type='city', placeholder='City', autocomplete='off', required)
+								.form-group
+									input.form-control.form-fix(name='state', id='state', type='state', placeholder='State', autocomplete='off', required)
+								.form-group
+									input.form-control.form-fix(name='zip', id='zip', type='zip', placeholder='Zip', autocomplete='off', required)
+								.form-group
+									input.button.outline.btn-block(type="submit", value="Add Address")
 						.col-md-4.col-md-offset-2
-							p Kareem Phillip-Jackson
-							p 606 Auburn Ave
-							p Melbourne, FL
-							p 32901
+							- each address, i in shipping
+								h5.title= address.street
+								h3= address.apartment
+								h3= address.city
+								h3= address.state
+								h3= address.zip
+							

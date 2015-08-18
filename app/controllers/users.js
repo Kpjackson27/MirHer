@@ -7,7 +7,6 @@ var _ = require('lodash'),
 	nodemailer = require('nodemailer'),
 	User = require('../models/User'),
   Article = require('../models/News'),
-  Shipping = require('../models/Shipping'),
   secrets = require('../../config/secrets');
 
 
@@ -611,27 +610,6 @@ exports.postHairFrequency = function(req, res, next){
 
   /**************CREATE MIRHER END***************/
   
-//create a new address
-exports.addAddress = function(req, res) {
-  // Create a new address object
-  var shipping = new Shipping(req.body);
-
-  //set creator property for shipping address 
-  shipping.creator = req.user;
-
-  // Try saving the address
-  shipping.save(function(err) {
-    if (err) {
-      req.flash('errors', {
-        msg: getErrorMessage(err)
-      });
-      return res.redirect('/account/me/shipping');
-    } else {
-      req.flash('success', { msg: 'Shipping Address added'});
-      return res.redirect('/account/me/shipping');
-    }
-  });
-};
 
 
 
@@ -664,29 +642,6 @@ exports.addAddress = function(req, res) {
       *
     */
 
-exports.getAddress = function(req, res) {
-  // Use the model 'find' method to get a list of articles
-  Shipping.find().sort('-creator').populate('creator', 'email profile profile.').exec(function(err, shipping) {
-    if (err) {
-      req.flash('errors', {
-        msg: getErrorMessage(err)
-      });
-      return res.redirect('/account/me/shipping');
-    } else {
-      res.format({
-        html: function() {
-          res.render('account/me/shipping', {
-            title: 'Shipping Address',
-            "shipping": shipping
-          });
-        },
-        json: function() {
-          res.json(shipping);
-        }
-      });
-    }
-  });
-};
 
 
     /**

@@ -1,9 +1,14 @@
 'use strict';
 
-module.exports = function(app){
-	//Load the 'index' controller
-	var shipping = require('../controllers/shipping');
+	var shipping = require('../controllers/shipping'),
+		passport = require('passport');
 
-	//Mount the 'index' controller's 'render' method
-	app.get('/account/me/shipping', shipping.render);
+	var passportConf = require('../../config/passport');
+
+module.exports = function(app){
+	
+	app.route('/account/me/shipping')
+		//.get(passportConf.isAuthenticated, shipping.render)
+		.post(passportConf.isAuthenticated,shipping.addAddress)
+		.get(passportConf.isAuthenticated,shipping.getAddress);
 };

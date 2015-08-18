@@ -22,7 +22,7 @@ block content
 							.spacer-mini
 							h4.text-left Profile Info
 							hr.line
-							form(action="/account/me/profile", method='POST')
+							form(action="/account/me/editprofile", method='POST')
 								input(type='hidden', name='_csrf', value=_csrf)
 								.form-group
 									input.form-control.form-fix(name='firstname', id='firstname', type='firstname', value='#{user.profile.firstname}', required)
