@@ -231,7 +231,7 @@ exports.showUsers = function(req, res) {
             user.save(function(err){
               if(err) return next(err);
               req.flash('success', { msg: 'Profile information updated.'});
-              res.redirect('/account/me/editprofile');
+              res.redirect('/account/me/profile');
             });
           });
          };  

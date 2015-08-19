@@ -66,3 +66,51 @@ exports.getAddress = function(req, res) {
     }
   });
 };
+
+//Delete address method..create a route for this methods
+exports.deleteAddress = function(req, res) {
+
+  Shipping.findById(req.id, function(err, shipping){
+    if(err){
+      return console.error(err);
+    } else {
+      shipping.remove(function(err){
+        if(err){
+          req.flash('errors', {msg: 'Failed to delete shipping.'});
+          res.redirect('/account/me/shipping');
+        } else {
+          res.format({
+        html: function() {
+          res.render('/account/me/shipping', {
+            title: 'Shipping',
+            "shipping": shipping
+          });
+        },
+        json: function() {
+          res.json({message: 'deleted', shipping: shipping
+          });
+        }
+      });
+    }
+  });
+}
+});
+
+};
+
+exports.postUpdateAddress = function(req, res, next){
+        Shipping.findById(req.user.id, function(err,shipping){
+          if(err) return next(err);
+            shipping.street = req.body.street || '';
+            shipping.apartment = req.body.apartment || '';
+            shipping.city = req.body.city || '';
+            shipping.state = req.body.state || '';
+            shipping.zip = req.body.zip|| '';
+
+            shipping.save(function(err){
+              if(err) return next(err);
+              req.flash('success', { msg: 'Shipping information updated.'});
+              res.redirect('/account/me/shipping');
+            });
+          });
+         };  

@@ -2,6 +2,9 @@ a.remove-link {
     text-decoration: none;
 }
 
+.pad-300{
+    padding:300px !important;
+}
 .logo2{
     height:200px;
     margin-bottom:-50px;

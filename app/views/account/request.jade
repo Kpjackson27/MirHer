@@ -1,0 +1,42 @@
+extends ../layouts/default
+
+block content
+	h4.text-center Request Chest
+	p.separator
+	h6.text-center Intro Text to request
+	.container.equal-height
+		.row
+			.col-md-6.mrg-0.pad-10.text-center
+				h4.title Select Hair
+				p.separator
+				.col-md-4.col-md-offset-4
+					h5 Select Type of Hair
+					select.form-control
+						option(value="one") One
+					h5 Select Texture of Hair
+						select.form-control
+							option(value="one") One
+					h5 Select Number of Bundles
+						select.form-control
+							option(value="one") One
+					h5 Select Lengths
+						select.form-control
+							option(value="one") One
+			.col-md-6.mrg-0.pad-10.text-center.black.text-light
+				h4.title Select Extras
+				p.separator
+				.col-md-4.col-md-offset-4
+					h5 Closure
+					select.form-control
+						option(value="one") One
+					h5 Frontals
+						select.form-control
+							option(value="one") One
+					h5 Clip-Ins
+						select.form-control
+							option(value="one") One
+	.spacer-mini
+	p.text-center
+		a.button.outline(href="/account/me/request") Finalize Chest
+
+		

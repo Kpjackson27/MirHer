@@ -7,27 +7,39 @@ block content
     .col-md-6.col-md-offset-3.text-center
       p.text-center Hello #{user.profile.firstname}, welcome to MirHer, the most exclusive hair club...where your hair is golden!
       p.text-center 
-        a.button.outline(href="") Request Chest
+        a.button.outline(href="/account/me/request") Request Chest
   .portfolio-wrapper.container
     .portfolio.col-4(data-space='5')
       .item
         a.item-link(href='project.html')
           .item-img(style="background-image: url('http://www.hairandmakeupideas.com/wp-content/uploads/2015/03/curly-hair-extensions-22.jpg')")
-          .item-overlay
-            h5 Types of hair
+            .overlay.overlay-dark
+            .row.text-light.text-center.pad-100
+              h6.title.capitalise Hair Types
+              p.separator
+            .item-overlay
       .item
         a.item-link(href='project.html')
           .item-img(style="background-image: url('http://www.freeindex.co.uk/media/listingpics/616/842/tightkinky3c4a2.jpg')")
-          .item-overlay
-            h5 Textures of hair
+            .overlay.overlay-dark
+            .row.text-light.text-center.pad-100
+              h6.title.capitalise Hair Textures
+              p.separator
+            .item-overlay
       .item
         a.item-link(href='project.html')
           .item-img(style="background-image: url('http://www.hairandmakeupideas.com/wp-content/uploads/2015/03/curly-hair-extensions-22.jpg')")
-          .item-overlay
-            h5 Hair Styles
+            .overlay.overlay-dark
+            .row.text-light.text-center.pad-100
+              h6.title.capitalise Hair Styles
+              p.separator
+            .item-overlay
       .item
         a.item-link(href='/news')
           .item-img(style="background-image: url('http://www.freeindex.co.uk/media/listingpics/616/842/tightkinky3c4a2.jpg')")
-          .item-overlay
-            h5 Latest News
+            .overlay.overlay-dark
+            .row.text-light.text-center.pad-100
+              h6.title.capitalise MirHer Blog
+              p.separator
+            .item-overlay
 
