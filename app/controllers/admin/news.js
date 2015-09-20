@@ -3,12 +3,12 @@
 
 // Load the module dependencies
 var mongoose = require('mongoose'),
-	News = mongoose.model('News'),
 	cloudinary = require('cloudinary'),
-	fs = require('fs');
-
-
-	
+	fs = require('fs'),
+	News = mongoose.model('News'),
+	crypto = require('crypto'),
+	multipart = require('connect-multiparty'),
+	multipartMiddleware = multipart();
 
 // Create a new error handling controller method
 var getErrorMessage = function(err) {
@@ -37,20 +37,25 @@ exports.create = function(req, res) {
 	// Create a new article object
 	var news = new News(req.body);
 
+	var imageFile = req.files.image.path;
+
 	// Set the article's 'creator' property
 	news.creator = req.user;
 
-	// Try saving the article
-	news.save(function(err) {
-		if (err) {
-			req.flash('errors', {
-				msg: getErrorMessage(err)
-			});
-			return res.redirect('/admin/news');
-		} else {
-			// req.flash('success', { msg: 'Poem created.'});
-			return res.redirect('/admin');
-		}
+	//Upload file to cloudinary
+	cloudinary.uploader.upload(imageFile, {tags:'express_sample'})
+	.then(function(image){
+		console.log('** file uploaded to Cloudiary service');
+		console.dir(image);
+		news.image = image;
+		//Save photo with image metadata
+		return news.save();
+	})
+	.then(function(news){
+		console.log('** photo saved');
+	})
+	.finally(function(){
+		res.render('/admin/news', {news:news, upload : news.image});
 	});
 };
 

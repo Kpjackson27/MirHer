@@ -18,6 +18,7 @@ var config = require('./config'),
 	errorHandler = require('errorhandler'),
 	cloudinary = require('cloudinary').v2,
 	fs = require('fs'),
+	multipart = require('connect-multiparty'),
 	passport = require('passport');
 
 //Create a new error handling controller method
