@@ -145,4 +145,28 @@ module.exports = function(app){
 	
 	app.route('/account/unlink/:provider')
 		.get(passportConf.isAuthenticated, users.getOauthUnlink);
+	 /**
+     * OAuth authentication routes. (Sign in)
+     */
+    app.get('/auth/instagram', passport.authenticate('instagram'));
+    app.get('/auth/instagram/callback', passport.authenticate('instagram', {
+        failureRedirect: '/login'
+    }), function(req, res) {
+        res.redirect(req.session.returnTo || '/account/me/profile');
+    });
+
+	   app.get('/auth/facebook', passport.authenticate('facebook', {
+        scope: ['email', 'user_location']
+    }));
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+        failureRedirect: '/login'
+    }), function(req, res) {
+        res.redirect(req.session.returnTo || '/account/me/profile');
+    });
+    app.get('/auth/twitter', passport.authenticate('twitter'));
+    app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+        failureRedirect: '/login'
+    }), function(req, res) {
+        res.redirect(req.session.returnTo || '/account/me/profile');
+    });
 };

@@ -1,5 +1,5 @@
-a.remove-link {
-    text-decoration: none;
+.margin-15{
+    margin-left: 15px;
 }
 
 .pad-300{
@@ -8,7 +8,7 @@ a.remove-link {
 .logo2{
     height:200px;
     margin-bottom:-50px;
-    margin-top:-55px;
+    /*margin-top:-55px;*/
    /* margin-left:55%;*/
     }
     @media(max-width:768px){
@@ -142,6 +142,7 @@ a, a:hover, a:focus {
 }
 a {
     text-decoration: underline;
+    font-size: 12px;
 }
 .text-light a {
     color: #fff;

@@ -116,7 +116,6 @@ module.exports = function(db) {
 	require('../app/routes/post.js')(app);
 	require('../app/routes/orders.js')(app);
 	require('../app/routes/admin/admin.js')(app);
-	require('../app/routes/shipping.js')(app);
 	require('../app/routes/payment.js')(app);
 	require('../app/routes/request.js')(app);
 

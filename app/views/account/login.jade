@@ -25,6 +25,18 @@ block content
 						.form-group
 							input.button.outline.btn-block(type="submit", id="submit", value="login")
 							a(href="/forgot") Forgot Password?
+						hr
+						.form-group
+							form(method="GET", action="/auth/facebook")
+								button(type="submit").button.outline
+									i.fa.fa-facebook
+							form(method="GET", action="/auth/instagram")
+								button(type="submit").button.outline
+									i.fa.fa-instagram 
+							form(method="GET", action="/auth/twitter")
+								button(type="submit").button.outline
+									i.fa.fa-twitter 
+
 
 
 

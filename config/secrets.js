@@ -44,6 +44,26 @@ module.exports = {
   lob: {
     apiKey: process.env.LOB_KEY || 'test_814e892b199d65ef6dbb3e4ad24689559ca'
   },
+   facebook: {
+    clientID: process.env.FACEBOOK_ID || '1690419291188156',
+    clientSecret: process.env.FACEBOOK_SECRET || '2abaa81d99bb48b3150f28362eb1d8b5',
+    callbackURL: '/auth/facebook/callback',
+    passReqToCallback: true
+  },
+
+  instagram: {
+    clientID: process.env.INSTAGRAM_ID || '4caf64356a524082b77c48fe863449c7',
+    clientSecret: process.env.INSTAGRAM_SECRET || '1920b0a5150344c687a6858fd98c0295',
+    callbackURL: '/auth/instagram/callback',
+    passReqToCallback: true
+  },
+
+  twitter: {
+    consumerKey: process.env.TWITTER_KEY || '4fyP8wGZwwWJDvNxUnVPYVz6w',
+    consumerSecret: process.env.TWITTER_SECRET  || 'mzXGrr2t0EnRS4AFNlWo5HqoKl25xrCYNV2cQA0Vp6Kh7LxKmh',
+    callbackURL: '/auth/twitter/callback',
+    passReqToCallback: true
+  }
 
   
 
