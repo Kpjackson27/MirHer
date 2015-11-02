@@ -4,6 +4,7 @@
 var admin = require('../../controllers/admin/admin'),
 	users = require('../../controllers/users'),
 	news = require('../../controllers/admin/news'),
+	cloudinary = require('cloudinary'),
 	passport = require('passport'),
 	passportConf = require('../../../config/passport');
 	
@@ -35,10 +36,22 @@ module.exports = function(app){
 	app.route('/admin/users')
 		.get(users.showUsers);
 
-	app.route('/admin/portfolio')
-		.get(admin.portfolio)
-		.post(admin.addImage);
-
+	/*app.post('/hair/image', passportConf.isAuthenticated, function(req,res){
+		console.log(req.files.file.path);
+		cloudinary.uploader.upload(
+			req.files.file.path,
+			function(result){
+				var newUrl = cloudinary.url(result.public_id, {
+					width: 100,
+					height: 100,
+					crop: 'thumb',
+					gravity: 'face',
+					radius: '25'
+				});
+				User.findById
+			})
+	})
+*/
 };
 
 

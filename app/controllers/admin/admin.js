@@ -23,11 +23,8 @@ exports.users = function(req,res){
 	});
 };
 
-exports.portfolio = function(req,res){
-	cloudinary.api.resources(function(items){
-		res.render('admin/portfolio', { images: items.resources, cloudinary: cloudinary });
-	});
-};
+
+
 
 exports.addImage = function(req,res){
 	var imageStream = fs.createReadStream(req.files.image.path, { encoding: 'binary' }),

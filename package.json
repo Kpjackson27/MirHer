@@ -10,7 +10,7 @@
     "async": "^1.2.1",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "~1.8.0",
-    "cloudinary": "^1.2.1",
+    "cloudinary": "latest",
     "compression": "~1.0.11",
     "connect-assets": "^4.7.1",
     "connect-mongo": "~0.4.1",

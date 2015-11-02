@@ -1,28 +1,33 @@
 extends layouts/default
 
 block content
-	h4.text-center #{title}
-		p.separator
-		.col-md-12
-			.container
+	.container
+		.row
+			.col-md-12.text-center
+				h3 MirHer News
+				br
+			.col-md-4.col-md-offset-5
+				i.pe-7s-plus
+					span 
+						a(href="/admin/news") Create News
+			.col-md-12
+				br
 				table.table
 					thead
 						tr
 							th Title
-							th Content
-							th Date Created
+							th Created
+							th Delete
+							th Edit
 						tbody
-							- each article, i in news
-								tr
-									td= article.title
-									td= article.content
-									td= article.created
-									td
-										form(Method="POST", action="/article/#{article._id}")
-											input(type='hidden', name='_csrf', value=_csrf)
-											.form-group
-												input.button.outline.btn-block(type="submit", value="Delete Post")
-
+							td Name of Article
+							td 04/10/2015
+							td 
+								i.pe-7s-junk
+							td
+								i.pe-7s-pen
+				
+			
 
 
 								

@@ -1,0 +1,31 @@
+extends layouts/default
+
+block content
+	.container
+		.row
+			.col-md-12.text-center
+				h3 MirHer - Add Product
+	.container
+		.row
+			br
+			form(Method="POST")
+				input(type='hidden', name='_csrf', value=_csrf)
+				.col-md-4
+					label(for="payload") Select Image to upload
+					input#payload(type="file" name="file" accept="image/*")
+				.col-md-8
+					.col-md-5
+						h5 Type
+						.form-group
+							input.form-control.form-fix(name='type', id='type', type='text', placeholder='Type', required)
+						h5 Texture
+						.form-group
+							input.form-control.form-fix(name='texture', id='texture', type='text', placeholder='Texture', required)
+						h5 Color
+						.form-group
+							input.form-control.form-fix(name='color', id='color', type='text', placeholer='Color',placeholder='Color', required)
+						h5 Quantity
+						.form-group
+							input.form-control.form-fix(name='quantity', id='quantity', type='quantity', placeholder='Quantity')
+						.form-group
+							input.button.outline.btn-block(type="submit", value="Create Product")

@@ -641,6 +641,15 @@ exports.postHairFrequency = function(req, res, next){
       * Show User Shipping Information
       *
     */
+     /**
+  *GET /account
+  * 
+ */
+ exports.getShipping = function(req, res){
+    res.render('account/shipping', {
+      title: 'MirHer | Shipping'
+      });
+    };
 
 
 

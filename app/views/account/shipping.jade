@@ -1,49 +1,38 @@
 extends ../layouts/default
 
 block content
-	h4.text-center Account 
-	p.separator
-	.col-md-12.text-center
-		.tabs
-			ul.tab-nav
-				li
-					a.remove-link(href="/account/me/editprofile") Edit Profile  |
-				li.active
-					a.remove-link(href="/account/me/shipping") Shipping Address |
-				li
-					a.remove-link(href="/account/me/orders") Orders |
-				li
-					a.remove-link(href="/account/me/payment") Payment Methods
-			.tab-panels
-				#tab2.active
-					.container
-						.spacer-mini
-						h4.text-center Shipping Address
-						.spacer-mini
-						p.separator
-						.spacer-mini
-						.col-md-4.col-md-offset-4.pad-0.overflow
-							form(method='POST', action='/account/me/shipping')
-								input(type='hidden', name='_csrf', value=_csrf)
-								.form-group
-									input.form-control.form-fix(name='street', id='street', type='street', placeholder='Street Address', autocomplete='off', required)
-								.form-group
-									input.form-control.form-fix(name='apartment', id='apartment', type='apartment', placeholder='Apt, floor, suite', autocomplete='off', required)
-								.form-group
-									input.form-control.form-fix(name='city', id='city', type='city', placeholder='City', autocomplete='off', required)
-								.form-group
-									input.form-control.form-fix(name='state', id='state', type='state', placeholder='State', autocomplete='off', required)
-								.form-group
-									input.form-control.form-fix(name='zip', id='zip', type='zip', placeholder='Zip', autocomplete='off', required)
-								.form-group
-									input.button.outline.btn-block(type="submit", value="Add Address")
 	.container
 		.row
-			- each address, i in shipping
-				.post.col-md-3.col-sm-6.text-center.pad-30.black.text-light
-					h6 #{user.profile.firstname} #{user.profile.lastname}
-					p #{address.street} #{address.apartment}
-					p #{address.city} #{address.state}
-					p #{address.zip}
-					a.button.outline.light.mrg-top-20(href="/look") Edit
-					a.button.outline.light.mrg-top-20(href="/look") Remove	
+			.col-md-4.col-md-offset-4
+				h4.text-center Account 
+				p.separator
+			.col-md-6.col-md-offset-4
+				ul.list-inline.list-unstyled
+					li
+						a(href="/account/me/editprofile") Profile Info  
+					li
+						a(href="/account/me/shipping") Shipping Address 
+					li
+						a(href="/account/me/orders") Orders 
+					li
+						a(href="/account/me/payment") Payment Methods
+	.container
+		.col-md-4.col-md-offset-2.pad-0.overflow
+			.spacer-mini
+			h5.text-left Shipping Address
+			hr.line
+			form(method='POST', action='/account/me/shipping')
+				input(type='hidden', name='_csrf', value=_csrf)
+				.form-group
+					input.form-control.form-fix(name='street', id='street', type='street', placeholder='Street Address', autocomplete='off', required)
+				.form-group
+					input.form-control.form-fix(name='apartment', id='apartment', type='apartment', placeholder='Apt, floor, suite', autocomplete='off', required)
+				.form-group
+					input.form-control.form-fix(name='city', id='city', type='city', placeholder='City', autocomplete='off', required)
+				.form-group
+					input.form-control.form-fix(name='state', id='state', type='state', placeholder='State', autocomplete='off', required)
+				.form-group
+					input.form-control.form-fix(name='zip', id='zip', type='zip', placeholder='Zip', autocomplete='off', required)
+				.form-group
+					input.button.outline.btn-block(type="submit", value="Add Address")
+	

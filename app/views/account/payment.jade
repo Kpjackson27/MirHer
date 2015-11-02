@@ -1,30 +1,42 @@
 extends ../layouts/default
 
 block content
-	h4.text-center Account 
-	p.separator
-	.col-md-12.text-center
-		ul.list-inline.list-unstyled
-			li
-				a(href="/account/me/editprofile") Edit Profile  
-			li
-				a(href="/account/me/shipping") Shipping Address 
-			li
-				a(href="/account/me/orders") Orders 
-			li
-				a(href="/account/me/payment") Payment Methods 
-				
 	.container
-		.col-md-4.col-md-offset-4
+		.row
+			.col-md-4.col-md-offset-4
+				h4.text-center Account 
+				p.separator
+			.col-md-6.col-md-offset-4
+				ul.list-inline.list-unstyled
+					li
+						a(href="/account/me/editprofile") Profile Info  
+					li
+						a(href="/account/me/shipping") Shipping Address 
+					li
+						a(href="/account/me/orders") Orders 
+					li
+						a(href="/account/me/payment") Payment Methods
+	.container
+		.col-md-2
 			.spacer-mini
-			h4.text-center Credit Card Information
-			p.separator
-			form(method='POST')
+			h5 Account Credit
+			hr.line
+			form(method="POST")
 				input(type='hidden', name='_csrf', value=_csrf)
 				.form-group
-					.col-md-12
+					input.form-control.form-fix(name='credit', id='credit', type='credit', placeholder='Credit')
+				.form-group
+					input.button.outline.btn-block(type="submit", value="Add Credit")
+		.col-md-4.col-md-offset-1
+			.spacer-mini
+			h5 Credit Card Information
+			hr.line
+			form(method='POST')
+				input(type='hidden', name='_csrf', value=_csrf)
+				.col-md-12
+					.form-group
 						input.form-control.form-fix(name='card_number', id='card_number', type='name', placeholder='Card Number')
-						.spacer-mini
+					.spacer-mini
 				.form-group
 					.col-md-4
 						input.form-control.form-fix(name='date', id='date', type='text', placeholder='Date', autocomplete='off', required)
@@ -39,5 +51,8 @@ block content
 					.col-md-12
 						input.button.outline.btn-block(type="submit", value="Add Card")
 						.spacer-mini
+		.col-md-2
+			.spacer-mini
+			h5 card info here
 
 					

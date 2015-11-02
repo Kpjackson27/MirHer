@@ -104,6 +104,58 @@ var UserSchema = new Schema({
 			default:''
 		}
 	},
+	shipping: {
+		streetaddress:{
+			type: String,
+			default: ''
+		},
+		unit:{
+			type: String,
+			default: ''
+		},
+		city:{
+			type: String,
+			default: ''
+		},
+		state:{
+			type: String,
+			default:''
+		},
+		zipcode: {
+			type: String,
+			default: ''
+		},
+		country: {
+			type: String,
+			default:''
+		}
+	},
+	billing: {
+		streetaddress:{
+			type: String,
+			default: ''
+		},
+		unit:{
+			type: String,
+			default: ''
+		},
+		city:{
+			type: String,
+			default: ''
+		},
+		state:{
+			type: String,
+			default:''
+		},
+		zipcode: {
+			type: String,
+			default:''
+		},
+		country: {
+			type: String,
+			default:''
+		}
+	},
 
 	resetPasswordToken: String,
 	resetPasswordExpires: Date

@@ -63,8 +63,12 @@ module.exports = {
     consumerSecret: process.env.TWITTER_SECRET  || 'mzXGrr2t0EnRS4AFNlWo5HqoKl25xrCYNV2cQA0Vp6Kh7LxKmh',
     callbackURL: '/auth/twitter/callback',
     passReqToCallback: true
-  }
+  },
 
-  
+     cloudinary: {
+        cloud_name: 'dqevqceyc',
+        api_key: '443513514397748',
+        api_secret: 'lprAeS7gCHRibLkpY5ZGpMcAbBo'
+  } 
 
 };

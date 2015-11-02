@@ -2,27 +2,40 @@ extends layouts/default
 
 block content
 	h4.text-center #{title}
-		p.separator
-		.col-md-12
-			.container
-				table.table
-					thead
-						tr
-							th ID
-							th Firstname
-							th Lastname
-							th Email
-						tbody
-							- each user, i in users
-								tr
-									td= user._id
-									td= user.firstname
-									td= user.lastname
-									td= user.email
+	p.separator
+	.col-md-12
+		.container
+			table.table
+				thead
+					tr
+						th ID
+						th Firstname
+						th Lastname
+						th Email
+						th View Account
+						th Delete
+						th Edit
+					tbody
+						- each user, i in users
+							tr
+								td= user._id
+								td= user.firstname
+								td= user.lastname
+								td= user.email
+								td
+									i.pe-7s-browser
+								td 
+									i.pe-7s-junk
+								td
+									i.pe-7s-pen
+				
 								
 									
 
 	
 
 								
+
+				
+			
 

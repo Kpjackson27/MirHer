@@ -105,6 +105,11 @@ module.exports = function(app){
 		.post(passportConf.isAuthenticated, users.postUpdateProfile);
 
 	//setup the 'account' routes
+	app.route('/account/me/shipping')
+		.get(passportConf.isAuthenticated, users.getShipping);
+		//.post(passportConf.isAuthenticated, users.postUpdateProfile);
+
+	//setup the 'account' routes
 	app.route('/mystylist')
 		.get(passportConf.isAuthenticated, users.mystylist);
 

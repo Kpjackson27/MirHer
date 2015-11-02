@@ -16,10 +16,9 @@ var config = require('./config'),
 	cookieParser = require('cookie-parser'),
 	expressValidator = require('express-validator'),
 	errorHandler = require('errorhandler'),
-	cloudinary = require('cloudinary').v2,
-	fs = require('fs'),
-	multipart = require('connect-multiparty'),
+	cloudinary = require('cloudinary'),
 	passport = require('passport');
+	var secrets = require('./secrets');
 
 //Create a new error handling controller method
 var getErrorMessage = function(err){
@@ -51,6 +50,16 @@ module.exports = function(db) {
 	app.use(bodyParser.json());
 	app.use(methodOverride());
 
+	cloudinary.config({
+		cloud_name: secrets.cloudinary.cloud_name,
+		api_key: secrets.cloudinary.api_key,
+		api_secret: secrets.cloudinary.api_secret
+	});
+	process.env.CLOUDINARY_URL = 'cloudinary://443513514397748:lprAeS7gCHRibLkpY5ZGpMcAbBo@dqevqceyc';
+	if(typeof(process.env.CLOUDINARY_URL) == 'undefined'){
+		console.warn('!! cloudinary config is undefined !!');
+		console.warn('export CLOUDINARY_URL or set dotenv file');
+	}
 	//Configure multer module
 	app.use(multer({ dest: './uploads/'}));
 	
@@ -88,14 +97,6 @@ module.exports = function(db) {
 		xssProtection: true
 	}));
 
-		cloudinary.config({ 
-			cloud_name: 'ddggjtvut', 
-			api_key: '936692975464755', 
-			api_secret: 'wU0i7hVoqbl2bKBpXU59JEPaWhU' 
-		});
-
-
-
 	//Configure passport middleware
 	app.use(passport.initialize());
 	app.use(passport.session());
@@ -116,8 +117,10 @@ module.exports = function(db) {
 	require('../app/routes/post.js')(app);
 	require('../app/routes/orders.js')(app);
 	require('../app/routes/admin/admin.js')(app);
+	require('../app/routes/admin/orders.js')(app);
 	require('../app/routes/payment.js')(app);
 	require('../app/routes/request.js')(app);
+	require('../app/routes/admin/products.js')(app);
 
 
 	//render static files
