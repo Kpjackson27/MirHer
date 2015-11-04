@@ -51,8 +51,11 @@ block content
 				hr.line
 				p Help us make suggestions for your hair selections and hair styles by uploading a picture of yourself
 				img.img-rounded(src="#{user.profile.picture}")
-				h6 Select Image
-				h6 Upload Image
+				form(Method="POST")
+				input(type='hidden', name='_csrf', value=_csrf)
+				.col-md-4
+					label(for="payload") Select Image
+					input#payload(type="file" name="file" accept="image/*")
 
 
 

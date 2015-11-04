@@ -18,6 +18,10 @@ var OrdersSchema = new Schema({
 		trim: true,
 		required: 'Title cannot be blank'
 	},
+	feedback: {
+		type: String,
+		default: '',
+	},
 	creator: {
 		type: Schema.ObjectId,
 		ref: 'User'

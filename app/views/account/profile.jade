@@ -1,6 +1,24 @@
 extends ../layouts/default
 
 block content
-	h4.text-center Profile
-	p.separator
-		
+	.container
+		.row
+			h4.text-center Profile
+			p.separator
+			.col-md-12.text-center
+				img.img-circle(src="#{user.profile.picture}")
+				h4 Kareem
+				h6= user.email
+				h6 Request Chest
+				h6 Customer Support
+				p.separator
+			.col-md-4.text-center
+				h4 Number of Orders
+				p 3
+			.col-md-4.text-center
+				h4 MirHer Credit
+				p $3
+			.col-md-4.text-center
+				h4 Number of Referrals
+				p 3
+	

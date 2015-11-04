@@ -6,3 +6,9 @@ exports.render = function(req,res){
 		title: 'MirHer | Orders',
 	});
 };
+
+exports.feedback = function(req,res){
+	res.render('account/feedback', {
+		title: 'MirHer | Feedback',
+	});
+};
