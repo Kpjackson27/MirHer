@@ -51,21 +51,9 @@ block content
 				hr.line
 				p Help us make suggestions for your hair selections and hair styles by uploading a picture of yourself
 				img.img-rounded(src="#{user.profile.picture}")
-				form(Method="POST")
-				input(type='hidden', name='_csrf', value=_csrf)
-				.col-md-4
-					label(for="payload") Select Image
-					input#payload(type="file" name="file" accept="image/*")
 
-
-
-		
-
-	
-					
-
-
-						
-
-
-						
+				form(action="/profile/images", Method="POST", enctype="multipart/form-data")
+					input(type='hidden', name='_csrf', value=_csrf)
+					.form-group.form-material.floating
+						input#file.form-control(type='file', name='file')
+						button.btn.btn-primary.btn-block.btn-lg.margin-top-40(type='submit') upload
