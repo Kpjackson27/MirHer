@@ -622,7 +622,32 @@ exports.postHairFrequency = function(req, res, next){
       * Create New User Shipping Information
       *
     */
-    
+  
+    exports.postShipping = function(res, req, next) {
+
+      req.assert('streetaddress', 'Street Address cannot be blank').notEmpty();
+      req.assert('city', 'City cannot be blank').notEmpty();
+      req.assert('state', 'State cannot be blank').notEmpty();
+      req.assert('zipcode', 'Zip Code cannot be blank').notEmpty();
+      req.assert('country', 'Country cannot be blank').notEmpty();
+
+      User.findById(req.user.id, function(err,user){
+        if(err) return next(err);
+        user.shipping.streetaddress = req.body.streetaddress;
+        user.shipping.unit = req.body.unit;
+        user.shipping.city = req.body.city;
+        user.shipping.state = req.body.state;
+        user.shipping.zipcode = req.body.zipcode;
+        user.shipping.country = req.body.country;
+
+        user.save(function(err){
+          if(err) return next(err);
+          req.flash('success', { msg: 'Shipping Address Added'});
+          res.redirect('/account/me/shipping');
+        });
+
+      });
+    };
 
 
 
@@ -630,7 +655,7 @@ exports.postHairFrequency = function(req, res, next){
       * Update User Shipping Information
       *
     */
-    
+
 
     /**
       * Delete User Shipping Information
@@ -641,6 +666,34 @@ exports.postHairFrequency = function(req, res, next){
       * Show User Shipping Information
       *
     */
+  exports.showShipping = function(req, res) {
+  // Use the model 'find' method to get a list of articles
+  User.find().sort('-created').populate('shipping').exec(function(err, users) {
+    if (err) {
+      req.flash('errors', {
+        msg: getErrorMessage(err)
+      });
+      return res.redirect('/');
+    } else {
+      res.format({
+        html: function() {
+          res.render('account/me/shipping', {
+            title: 'Shipping',
+            "users": users
+          });
+        },
+        json: function() {
+          res.json(users);
+        }
+      });
+    }
+  });
+};
+
+
+
+
+
      /**
   *GET /account
   * 

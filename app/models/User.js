@@ -27,6 +27,10 @@ var UserSchema = new Schema({
 			type: String,
 			default:''
 		},
+		credit: {
+			type:Number,
+			default: 10
+		},
 		phonenumber:{
 			type: Number,
 			default: ''
@@ -55,87 +59,40 @@ var UserSchema = new Schema({
 			type: String,
 			default: ''	
 		},
-		hairtype: {
-			type: String,
-			default: ''
+		orderamount: {
+			type: Number,
+			default: 0
 		},
-		hairhealth: {
-			type: String,
-			default: ''
+		referrals: {
+			type: Number,
+			default: 0
 		},
-		hairchallenges: { 
-			type: String,
-			default: ''
-		},
-		weavefrequency: {
-			type: String,
-			default: ''
-		},
-		rateofpurchase: {
-			type: String,
-			default: ''
-		},
-		hairlength: { 
-			type: String,
-			default: ''
-		},
-		hairtexture: {
-			type: String,
-			default: ''
-		},
-		numberofbundles: {
-			type: String,
-			default: ''
-		},
-		customunits:{
-			type: String,
-			default: ''
-		},
-		frontals: {
-			type: String,
-			default: ''
-		},
-		colors: {
-			type: String,
-			default: ''
-		},
-		products: {
-			type: String,
-			default:''
-		}
 	},
-	shipping: {
-		streetaddress:{
-			type: String,
-			default: ''
-		},
-		unit:{
-			type: String,
-			default: ''
-		},
-		city:{
-			type: String,
-			default: ''
-		},
-		state:{
-			type: String,
-			default:''
-		},
-		zipcode: {
-			type: String,
-			default: ''
-		},
-		country: {
-			type: String,
-			default:''
+	shipping: [
+		{
+			street: {
+				type: String,
+				default: ''
+			},
+			city: {
+				type: String,
+				default: ''
+			},
+			state: {
+				type: String,
+				default: ''
+			},
+			zip: {
+				type: String,
+				default: ''
+			}
 		}
-	},
-	billing: {
-		streetaddress:{
-			type: String,
-			default: ''
-		},
-		unit:{
+	], 
+
+	billing: [
+
+	{
+		street:{
 			type: String,
 			default: ''
 		},
@@ -155,7 +112,8 @@ var UserSchema = new Schema({
 			type: String,
 			default:''
 		}
-	},
+	}
+],
 
 	resetPasswordToken: String,
 	resetPasswordExpires: Date
