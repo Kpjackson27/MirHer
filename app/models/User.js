@@ -68,7 +68,7 @@ var UserSchema = new Schema({
 			default: 0
 		},
 	},
-	shipping: [
+	shippings: [
 		{
 			street: {
 				type: String,
@@ -89,9 +89,7 @@ var UserSchema = new Schema({
 		}
 	], 
 
-	billing: [
-
-	{
+	billings: [{
 		street:{
 			type: String,
 			default: ''
@@ -112,9 +110,7 @@ var UserSchema = new Schema({
 			type: String,
 			default:''
 		}
-	}
-],
-
+	}],
 	resetPasswordToken: String,
 	resetPasswordExpires: Date
 });
@@ -133,6 +129,17 @@ UserSchema.pre('save', function(next){
 		});
 	});
 }); 
+
+UserSchema.methods.addShippingAddr = function(street) {
+    if (this.shippings.street!=street) {
+        // this.shippings.push(id);
+        console.log("street !=");
+    } else {
+        // this.following.splice(this.following.indexOf(id), 1);
+        console.log("street ==");
+    }
+    console.log(this.shippings);
+};
 /**
  * Helper method for validation user's password.
  */

@@ -55,9 +55,8 @@ exports.uploadProfieImg = function(req, res) {
                         // Set the flash messages
                         // req.flash('error', message);
                         return res.redirect('/main');
-                    }
-                    else{
-                      res.redirect('/account/me/profile');
+                    } else {
+                        res.redirect('/account/me/profile');
                     }
                 });
             });
@@ -75,7 +74,7 @@ exports.uploadProfieImg = function(req, res) {
         //  tags: ['special', 'for_homepage']
         // }
     );
-    
+
 };
 /**
  *GET /login
@@ -717,25 +716,39 @@ exports.congrats = function(req, res) {
  *
  */
 
-exports.postShipping = function(res, req, next) {
+exports.postShipping = function(req, res, next) {
 
-    req.assert('streetaddress', 'Street Address cannot be blank').notEmpty();
+    req.assert('street', 'Street Address cannot be blank').notEmpty();
     req.assert('city', 'City cannot be blank').notEmpty();
     req.assert('state', 'State cannot be blank').notEmpty();
-    req.assert('zipcode', 'Zip Code cannot be blank').notEmpty();
-    req.assert('country', 'Country cannot be blank').notEmpty();
+    req.assert('zip', 'Zip Code cannot be blank').notEmpty();
+    // req.assert('country', 'Country cannot be blank').notEmpty();
 
     User.findById(req.user.id, function(err, user) {
-        if (err) return next(err);
-        user.shipping.streetaddress = req.body.streetaddress;
-        user.shipping.unit = req.body.unit;
-        user.shipping.city = req.body.city;
-        user.shipping.state = req.body.state;
-        user.shipping.zipcode = req.body.zipcode;
-        user.shipping.country = req.body.country;
-
+            if (err) return next(err);
+            var shipping = {};
+            shipping.street = req.body.street;
+            // shipping.unit = req.body.unit;
+            shipping.city = req.body.city;
+            shipping.state = req.body.state;
+            shipping.zip = req.body.zip;
+            // shipping.country = req.body.country;
+            var s = JSON.stringify(shipping);
+            console.log(s);
+            var duplicatedShipping = 0;
+            for (var i in user.shippings) {
+            console.log(JSON.stringify(user.shippings[i]));
+            if (JSON.stringify(user.shippings[i]) == s) {
+                duplicatedShipping = 1;
+                break;
+            }
+        }
+        if (duplicatedShipping === 0) {
+            user.shippings.push(shipping);
+        }
         user.save(function(err) {
             if (err) return next(err);
+            console.log(user.shippings);
             req.flash('success', {
                 msg: 'Shipping Address Added'
             });
