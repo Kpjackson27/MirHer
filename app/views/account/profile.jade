@@ -7,7 +7,7 @@ block content
 			p.separator
 			.col-md-12.text-center
 				img.img-circle(src="#{user.profile.picture}")
-				h4 Kareem
+				h4= user.profile.firstname
 				h6= user.email
 				p.text-center
 					a.button.outline(href="/account/me/request") Request Chest

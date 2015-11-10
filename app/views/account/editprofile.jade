@@ -25,7 +25,7 @@ block content
 				form(action="/account/me/editprofile", method='POST')
 					input(type='hidden', name='_csrf', value=_csrf)
 					.form-group
-						input.form-control.form-fix(name='firstname', id='firstname', type='firstname', value='Firstname', required)
+						input.form-control.form-fix(name='firstname', id='firstname', type='firstname', value='#{user.profile.firstname}', required)
 					.form-group
 						input.form-control.form-fix(name='lastname', id='lastname', type='lastname', value='Lastname', autocomplete='off', required)
 					.form-group
