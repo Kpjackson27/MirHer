@@ -31,6 +31,7 @@ exports.addProducts = function(req,res){
 //create a new article
 exports.create = function(req, res) {
     console.log(req.files.file.path);
+    console.log(req.body);
     cloudinary.uploader.upload(
         req.files.file.path,
         function(result){
@@ -42,8 +43,12 @@ exports.create = function(req, res) {
                 gravity: 'face',
                 radius: '25'
             });
-
-    var product = new Product(req.body);
+    // var product = new Product(req.body);
+    var product = new Product();
+    product.type = req.body.type;
+    product.texture = req.body.texture;
+    product.color = req.body.color;
+    product.quantity = req.body.quantity;
     product.image = newUrl;
     // Try saving the article
     product.save(function(err) {

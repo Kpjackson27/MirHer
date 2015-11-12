@@ -11,7 +11,7 @@ module.exports = function(app){
 	
 
 	app.route('/admin/products')
-		.get(products.products);
+		.get(products.list);
 
 	app.route('/admin/addproducts')
 		.get(products.addProducts, passportConf.isAuthenticated)

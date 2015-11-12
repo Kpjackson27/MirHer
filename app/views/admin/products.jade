@@ -23,19 +23,21 @@ block content
 							th Delete
 							th Edit
 						tbody
-							td #232342423223
-							td Image Here
-							td Brazilian
-							td Body Wave
-							td 34
-							td
-								i.pe-7s-junk
-									span
-										a(href="#")
-							td
-								i.pe-7s-bandaid
-									span
-										a(href="#")
+							- each product, i in products
+								td= product.id
+								td 
+									img(src="#{product.image}")
+								td= product.type
+								td= product.texture
+								td= product.quantity
+								td
+									i.pe-7s-junk
+										span
+											a(href="#")
+								td
+									i.pe-7s-bandaid
+										span
+											a(href="#")
 
 
 		

@@ -8,11 +8,11 @@ block content
 	.container
 		.row
 			br
-			form(Method="POST")
+			form(Method="POST", action="/admin/addproducts", enctype="multipart/form-data")
 				input(type='hidden', name='_csrf', value=_csrf)
 				.col-md-4
 					label(for="payload") Select Image to upload
-					input#payload(type="file" name="file" accept="image/*")
+					input#payload(type="file" name="file" accept="image/*",required)
 				.col-md-8
 					.col-md-5
 						h5 Type
