@@ -2,57 +2,13 @@ extends layouts/default
 
 block content
   .portfolio-wrapper.container
+    - each product, i in products
         .portfolio.col-3(data-space='50')
-          .item.tall(data-groups='branding')
-            a.item-link(href='project.html')
-              .item-img(style="background-image: url('http://photos.modelmayhem.com/photos/070723/09/46a4c0fd9b0b7.jpg')")
-              .item-overlay
-                h5 undisclosed desires
-          .item(data-groups='design')
-            a.item-link(href='project.html')
-              .item-img(style="background-image: url('http://images.castcall.blue-compass.com.s3.amazonaws.com/portfolioraw/598/598405.jpg')")
-              .item-overlay
-                h5 panic station
-          .item(data-groups='branding')
-            a.item-link(href='project.html')
-              .item-img(style="background-image: url('http://worldhairstyles.com/wp-content/uploads/HLIC/c2e9913d04ecc747e1c09e71ef52f4bb.jpg')")
-              .item-overlay
-                h5 drones
           .item.wide-tall(data-groups='design')
             a.item-link(href='project.html')
-              .item-img(style="background-image: url('http://cdn.hitfix.com/photos/5788930/Aisha-Tyler.jpg')")
+              .item-img(style="background-image: url('#{product.image}')")
               .item-overlay
                 h5 unintended
-          .item.tall(data-groups='branding')
-            a.item-link(href='project.html')
-              .item-img(style="background-image: url('https://s-media-cache-ak0.pinimg.com/originals/07/7f/e7/077fe769d2fa64ef66baa3adf54ab3df.jpg')")
-              .item-overlay
-                h5 Map of the Problematique
-          .item.wide(data-groups='branding')
-            a.item-link(href='project.html')
-              .item-img(style="background-image: url('http://whatiscool.net/images/data/user/19/article/naomi.jpg')")
-              .item-overlay
-                h5 space dementia
-          .item(data-groups='photography')
-            a.item-link(href='project.html')
-              .item-img(style="background-image: url('http://whatiscool.net/images/data/user/19/article/naomi_campbell_3.jpg')")
-              .item-overlay
-                h5 follow me
-          .item.tall(data-groups='photography')
-            a.item-link(href='project.html')
-              .item-img(style="background-image: url('http://g04.a.alicdn.com/kf/HTB1YBIvHFXXXXaAXpXXq6xXFXXX2/Army-Soldier-Catsuit-Female-romper-catsuit-ladies-denim-catsuit-bodysuits-macacao-feminino-e-macaquinho-girls-playsuit.jpg')")
-              .item-overlay
-                h5 Citizen Erased
-          .item.tall(data-groups='photography')
-            a.item-link(href='project.html')
-              .item-img(style="background-image: url('http://i.imgbox.com/aajMiKat.jpg')")
-              .item-overlay
-                h5 Neutron Star Collision
-          .item(data-groups='photography')
-            a.item-link(href='project.html')
-              .item-img(style="background-image: url('http://www.lookpictures.net/photos/registered_photos/4972-adriana-lima-best-model-pictures.jpg')")
-              .item-overlay
-                h5 starlight
       a.to-top(href='#')
         i.pe-7s-angle-up
 

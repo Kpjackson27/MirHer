@@ -14,8 +14,8 @@ module.exports = function(app){
 		.get(products.list);
 
 	app.route('/admin/addproducts')
-		.get(products.addProducts, passportConf.isAuthenticated)
-		.post(products.create, passportConf.isAuthenticated);
+		.get(products.addProducts)
+		.post(products.create);
 
 };
 

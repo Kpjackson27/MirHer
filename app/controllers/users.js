@@ -777,7 +777,7 @@ exports.postShipping = function(req, res, next) {
  */
 exports.showShipping = function(req, res) {
     // Use the model 'find' method to get a list of articles
-    User.find().sort('-created').populate('shipping').exec(function(err, users) {
+    User.find().sort('-created').populate('shippings').exec(function(err, users) {
         if (err) {
             req.flash('errors', {
                 msg: getErrorMessage(err)

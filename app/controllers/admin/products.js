@@ -57,6 +57,7 @@ exports.create = function(req, res) {
                 msg: getErrorMessage(err)
             });
             console.log(getErrorMessage(err));
+            console.log('sorry no product uploaded'); 
             return res.redirect('/admin/addproducts');
         } else {
             // req.flash('success', { msg: 'Poem created.'});

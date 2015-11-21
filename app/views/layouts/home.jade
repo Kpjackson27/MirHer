@@ -14,6 +14,10 @@ html
       header.absolute
         a.logo(href='/')
           img(src='/img/mirher.png', alt='LOGO').logo2
+        ul.push-right.list-unstyled
+          if user
+            li
+               a(href="#") Credits: #{user.profile.credit}
         topnav#topmenunav
           ul.push-right.list-unstyled
         a.mob-nav(href='#')
