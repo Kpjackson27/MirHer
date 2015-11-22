@@ -25,6 +25,7 @@ block content
 						tbody
 							- each product, i in products
 								tr
+									td= product.productid
 									td= product._id
 									td 
 										img(src="#{product.image}")

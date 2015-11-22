@@ -4,10 +4,10 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var ProductsSchema = new Schema({
-	productid:{
-		type: Number,
-		unique: true
-	},
+	// productid:{
+	// 	type: Number,
+	// 	unique: true
+	// },
 	created: {
 		type: Date,
 		default: Date.now

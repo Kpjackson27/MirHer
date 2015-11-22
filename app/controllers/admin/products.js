@@ -57,10 +57,12 @@ exports.create = function(req, res) {
                 msg: getErrorMessage(err)
             });
             console.log(getErrorMessage(err));
-            console.log('sorry no product uploaded'); 
+            console.log('Error: Product did not save in mongo db'); 
+            console.log(err);
+            console.log(product);
             return res.redirect('/admin/addproducts');
         } else {
-            // req.flash('success', { msg: 'Poem created.'});
+            req.flash('success', { msg: 'Product Uploaded. Check out the "Products" tab'});
             console.log('success');
             return res.redirect('/admin/products');
         }
