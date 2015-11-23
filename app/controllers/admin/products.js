@@ -87,9 +87,6 @@ exports.list = function(req, res) {
             });
             return res.redirect('/');
         } else {
-             req.flash('products', {
-                msg: "Here is the products"
-            });
             console.log(products);
             res.format({
                 html: function() {

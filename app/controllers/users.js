@@ -1086,13 +1086,11 @@ exports.postReferral = function(req, res) {
         return res.redirect('/account/me/profile');
     }
     // req.flash('email', req.body.email);
-    console.log(secrets.sendgrid.apiKey);
-    console.log(req.body.email);
     var payload = {
         to: req.body.email,
         from: req.user.email,
-        subject: 'Saying Hi',
-        text: 'This is my first email through SendGrid'
+        subject: 'Hi',
+        text: "I've discovered the best-kept secret in luxury beauty — and I think you're going to love it as much as I do. Check out mirher.com, and get $10 when using the code: " + req.user._id
     };
     sendgrid.send(payload, function(err, json) {
         if (err) {
@@ -1100,4 +1098,9 @@ exports.postReferral = function(req, res) {
         }
         console.log(json);
     });
+    req.flash('success', {
+        msg: 'Your referral Email is sent. Thank you.'
+    });
+    return res.redirect('/mymirher');
+
 };
