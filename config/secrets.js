@@ -27,8 +27,11 @@ module.exports = {
 
   sendgrid: {
     user: process.env.SENDGRID_USER || 'Qin',
-    password: process.env.SENDGRID_PASSWORD || 'lyricalintent2015'
+    password: process.env.SENDGRID_PASSWORD || 'lyricalintent2015',
+    apiKeyID: 'ODO8YRZySGadIk6aPAXsTg',
+    apiKey: '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'
   },
+
 
   twilio: {
     sid: process.env.TWILIO_SID || 'AC6f0edc4c47becc6d0a952536fc9a6025',

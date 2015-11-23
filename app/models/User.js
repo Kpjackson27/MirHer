@@ -67,6 +67,10 @@ var UserSchema = new Schema({
 			type: Number,
 			default: 0
 		},
+		rewardPerReferralPurchase:{
+			type: Number,
+			default: 10
+		}
 	},
 	shippings: [
 		{

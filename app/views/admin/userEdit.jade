@@ -1,0 +1,34 @@
+extends layouts/default
+
+
+block content
+	.container
+		.row
+			h4.text-center Edit User's Discount/Referral Code
+			p.separator
+			.col-md-12.text-center
+				img.img-circle(src="#{u.profile.picture}")
+				h4 firt name:
+				h4= u.profile.firstname || "N/A"
+				p.separator
+				h4 Email:
+				h6= u.email ||"N/A"
+				p.separator
+				h4 Reward (in $) when referred customer make a purchase more than $80
+				h6= u.profile.rewardPerReferralPurchase || "N/A"
+				p.separator
+				p.text-center
+					a.button.outline(href="#") Send code to this user
+				h6
+					a(href="#") TBD
+				p.separator
+			.col-md-4.text-center
+				h4 Number of Orders
+				p #{u.profile.orderamount}
+			.col-md-4.text-center
+				h4 MirHer Credit
+				p $3
+			.col-md-4.text-center
+				h4 Number of Referrals
+				p #{u.profile.referrals}
+	

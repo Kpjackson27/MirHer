@@ -71,7 +71,7 @@ exports.create = function(req, res) {
   );
 };
 
-// return a list of articles
+// return a list of admin uploaded products
 exports.list = function(req, res) {
     // var page = (req.param('page') > 0 ? req.param('page'):1) - 1;
     // var perPage = 15;
@@ -80,7 +80,6 @@ exports.list = function(req, res) {
     // page: page
     // };
 
-    // Use the model 'find' method to get a list of articles
     Product.find().sort('-created').exec(function(err, products) {
         if (err) {
             req.flash('errors', {
@@ -88,6 +87,9 @@ exports.list = function(req, res) {
             });
             return res.redirect('/');
         } else {
+             req.flash('products', {
+                msg: "Here is the products"
+            });
             console.log(products);
             res.format({
                 html: function() {

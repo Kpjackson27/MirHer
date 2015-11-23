@@ -186,4 +186,9 @@ module.exports = function(app) {
         res.redirect(req.session.returnTo || '/account/me/profile');
     });
     app.post('/profile/images', passportConf.isAuthenticated, users.uploadProfieImg);
+        //setup the 'account' routes
+    app.route('/account/me/referral')
+        .get(passportConf.isAuthenticated, users.referral)
+        .post(passportConf.isAuthenticated, users.postReferral);
+
 };

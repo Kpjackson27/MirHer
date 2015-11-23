@@ -19,14 +19,14 @@ block content
 	.container
 		.col-md-2
 			.spacer-mini
-			h5 Account Credit
+			h5 Remaining Account Credit: #{user.profile.credit}
 			hr.line
 			form(method="POST")
 				input(type='hidden', name='_csrf', value=_csrf)
 				.form-group
-					input.form-control.form-fix(name='credit', id='credit', type='credit', placeholder='Credit')
+					input.form-control.form-fix(name='credit', id='credit', type='credit', placeholder='e.g., H15CAPFPREM20Z317P')
 				.form-group
-					input.button.outline.btn-block(type="submit", value="Add Credit")
+					input.button.outline.btn-block(type="submit", value="Apply Code")
 		.col-md-4.col-md-offset-1
 			.spacer-mini
 			h5 Credit Card Information

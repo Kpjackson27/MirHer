@@ -6,11 +6,24 @@ block content
 			h4.text-center Profile
 			p.separator
 			.col-md-12.text-center
-				img.img-circle(src="#{user.profile.picture}")
-				h4= user.profile.firstname
-				h6= user.email
+				h4 profile image: 
+				img.img-circle(src="#{user.profile.picture}" alt="N/A")
+				p.separator
+				h4 your referral code: 
+				h4= user._id
+				p.text-center
+					a.button.outline(href="/account/me/referral") Refer a Friend today! 
+				h4 You get #{user.profile.rewardPerReferralPurchase} for every purchase they make.
+				p.separator
+				h4 first name:
+				h4= user.profile.firstname||"N/A"
+				p.separator
+				h4 Email:
+				h6= user.email ||"N/A"
+				p.separator
 				p.text-center
 					a.button.outline(href="/account/me/request") Request Chest
+				p.separator
 				h6
 					a(href="#") Customer Support
 				p.separator

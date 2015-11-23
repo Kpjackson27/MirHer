@@ -7,7 +7,9 @@ var _ = require('lodash'),
     nodemailer = require('nodemailer'),
     User = require('../models/User'),
     Article = require('../models/News'),
-    secrets = require('../../config/secrets');
+    secrets = require('../../config/secrets'),
+    sendgrid = require('sendgrid')(secrets.sendgrid.apiKey);
+
 var cloudinary = require('cloudinary');
 
 
@@ -113,7 +115,7 @@ exports.postLogin = function(req, res, next) {
         req.logIn(user, function(err) {
             if (err) return next(err);
             req.flash('success', {
-                msg: 'Success! You are logged in.'
+                msg: 'Welcome back!'
             });
             res.redirect(req.session.returnTo || '/mymirher');
         });
@@ -725,18 +727,18 @@ exports.postShipping = function(req, res, next) {
     // req.assert('country', 'Country cannot be blank').notEmpty();
 
     User.findById(req.user.id, function(err, user) {
-            if (err) return next(err);
-            var shipping = {};
-            shipping.street = req.body.street;
-            // shipping.unit = req.body.unit;
-            shipping.city = req.body.city;
-            shipping.state = req.body.state;
-            shipping.zip = req.body.zip;
-            // shipping.country = req.body.country;
-            var s = JSON.stringify(shipping);
-            console.log(s);
-            var duplicatedShipping = 0;
-            for (var i in user.shippings) {
+        if (err) return next(err);
+        var shipping = {};
+        shipping.street = req.body.street;
+        // shipping.unit = req.body.unit;
+        shipping.city = req.body.city;
+        shipping.state = req.body.state;
+        shipping.zip = req.body.zip;
+        // shipping.country = req.body.country;
+        var s = JSON.stringify(shipping);
+        console.log(s);
+        var duplicatedShipping = 0;
+        for (var i in user.shippings) {
             console.log(JSON.stringify(user.shippings[i]));
             if (JSON.stringify(user.shippings[i]) == s) {
                 duplicatedShipping = 1;
@@ -1069,5 +1071,33 @@ exports.postForgot = function(req, res, next) {
     ], function(err) {
         if (err) return next(err);
         res.redirect('/forgot');
+    });
+};
+exports.referral = function(req, res) {
+    res.render('account/referral', {
+        title: 'referral'
+    });
+};
+exports.postReferral = function(req, res) {
+    req.assert('email', 'Email is not valid').isEmail();
+    var errors = req.validationErrors();
+    if (errors) {
+        req.flash('errors', errors);
+        return res.redirect('/account/me/profile');
+    }
+    // req.flash('email', req.body.email);
+    console.log(secrets.sendgrid.apiKey);
+    console.log(req.body.email);
+    var payload = {
+        to: req.body.email,
+        from: req.user.email,
+        subject: 'Saying Hi',
+        text: 'This is my first email through SendGrid'
+    };
+    sendgrid.send(payload, function(err, json) {
+        if (err) {
+            console.error(err);
+        }
+        console.log(json);
     });
 };

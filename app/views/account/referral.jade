@@ -1,0 +1,16 @@
+extends ../layouts/default
+
+block content
+	h3.text-center Refer a Friend Today!
+	p.text-center Have us send a referral email to your friends
+	p.separator
+	.col-md-4.col-md-offset-4.pad-0.text-light.overflow
+		form(method='POST')
+			input.form-control(type='hidden', name='_csrf', value=_csrf)
+			.form-group
+				input.form-control.form-fix(type="email", id="email", name="email", placeholder="EMAIL ADDRESS", required)
+			.form-group
+				input.button.outline.btn-block(type="submit", value="Send") 
+	p.separator
+	p.text-center Or use Embed Personalized Banners
+	

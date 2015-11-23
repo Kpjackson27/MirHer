@@ -38,7 +38,8 @@
     "passport-facebook": "*",
     "passport-twitter": "*",
     "passport-instagram": "^1.0.0",
-    "connect-multiparty": "^1.1.0"
+    "connect-multiparty": "^1.1.0",
+    "sendgrid": "^1.9.2"
   },
   "devDependencies": {
     "should": "~4.0.4",

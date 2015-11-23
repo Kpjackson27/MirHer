@@ -8,7 +8,7 @@ block content
 			table.table
 				thead
 					tr
-						th ID
+						th ID/Referral Code
 						th Firstname
 						th Lastname
 						th Email
@@ -23,7 +23,8 @@ block content
 								td= user.lastname
 								td= user.email
 								td
-									i.pe-7s-browser
+									a(href="/admin/user/#{user._id}/edit") 
+										i.pe-7s-browser
 								td 
 									i.pe-7s-junk
 								td
