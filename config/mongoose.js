@@ -18,7 +18,7 @@ module.exports = function() {
 	require('../app/models/User');
 	require('../app/models/News');
 	require('../app/models/Products');
-	
+	require('../app/models/Coupons');
 	//Return the Mongoose connection instance
 	return db;
 };

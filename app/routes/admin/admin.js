@@ -6,8 +6,8 @@ var admin = require('../../controllers/admin/admin'),
     news = require('../../controllers/admin/news'),
     cloudinary = require('cloudinary'),
     passport = require('passport'),
-    passportConf = require('../../../config/passport');
-
+    passportConf = require('../../../config/passport'),
+    coupons = require('../../controllers/admin/coupons');
 
 module.exports = function(app) {
 
@@ -35,25 +35,33 @@ module.exports = function(app) {
     //app.post('/uploads', articles.uploadImage);
     app.route('/admin/users')
         .get(users.showUsers);
-   //passportConf.isAuthenticated passportConf.isAdmin
+    //passportConf.isAuthenticated passportConf.isAdmin
     app.route('/admin/user/:userId/edit')
         .get(admin.editUser);
     app.param('userId', admin.userByID);
 
+    app.route('/admin/coupons')
+        .get(coupons.list);
+
+    app.route('/admin/addcoupons')
+        .get(coupons.addcoupons)
+        .post(coupons.create);
+
+
     /*app.post('/hair/image', passportConf.isAuthenticated, function(req,res){
-		console.log(req.files.file.path);
-		cloudinary.uploader.upload(
-			req.files.file.path,
-			function(result){
-				var newUrl = cloudinary.url(result.public_id, {
-					width: 100,
-					height: 100,
-					crop: 'thumb',
-					gravity: 'face',
-					radius: '25'
-				});
-				User.findById
-			})
-	})
+        console.log(req.files.file.path);
+        cloudinary.uploader.upload(
+            req.files.file.path,
+            function(result){
+                var newUrl = cloudinary.url(result.public_id, {
+                    width: 100,
+                    height: 100,
+                    crop: 'thumb',
+                    gravity: 'face',
+                    radius: '25'
+                });
+                User.findById
+            })
+    })
 */
 };

@@ -1,0 +1,39 @@
+extends layouts/default
+
+block content
+	.container
+		.row
+			.col-md-12.text-center
+				h3 MirHer Coupons
+				br
+			.col-md-4.col-md-offset-5
+				i.pe-7s-plus
+					span 
+						a(href="/admin/addcoupons") Add Coupon
+			.col-md-12
+				br
+				table.table
+					thead
+						tr
+							th Code
+							th Image
+							th Type
+							th Category
+							th Expire on
+							th Disable
+						tbody
+							- each coupon, i in coupons
+								tr
+									td= coupon.code
+									td 
+										img(src="#{coupon.image}")
+									td= coupon.type+'%'
+									td= coupon.category
+									td= coupon.experitaion
+									td
+										i.pe-7s-bandaid
+											span
+												a(href="#")
+
+
+		
