@@ -8,7 +8,8 @@ var _ = require('lodash'),
     User = require('../models/User'),
     Article = require('../models/News'),
     secrets = require('../../config/secrets'),
-    sendgrid = require('sendgrid')(secrets.sendgrid.apiKey);
+    sendgrid = require('sendgrid')(secrets.sendgrid.apiKey),
+    generator = require('../util/generator');
 
 var cloudinary = require('cloudinary');
 
@@ -163,22 +164,16 @@ exports.postSignup = function(req, res, next) {
     req.assert('email', 'Email is not valid').isEmail();
     req.assert('password', 'Password must be at least 4 characters long').len(4);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
-
     var errors = req.validationErrors();
-
     if (errors) {
         req.flash('errors', errors);
         return res.redirect('/signup');
     }
+    // string email = req.body
 
-    var user = new User({
-        email: req.body.email,
-        password: req.body.password
-    });
-
-
+    console.log(typeof req.body.email);
     User.findOne({
-        email: req.body.email
+        email: req.body.email,
     }, function(err, existingUser) {
         if (existingUser) {
             req.flash('errors', {
@@ -186,6 +181,15 @@ exports.postSignup = function(req, res, next) {
             });
             return res.redirect('/signup');
         }
+        //generate a psedudo random referral code 
+        var referralCode = generator.referralCode(req.body.email, 100000, 999999);
+
+        var user = new User({
+            email: req.body.email,
+            password: req.body.password,
+            referralcode: referralCode
+
+        });
         user.save(function(err) {
             if (err) return next(err);
             req.logIn(user, function(err) {
