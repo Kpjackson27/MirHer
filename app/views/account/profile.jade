@@ -10,7 +10,11 @@ block content
 				img.img-circle(src="#{user.profile.picture}" alt="N/A")
 				p.separator
 				h4 your referral code: 
-				h4= user._id
+				h4= user.referralcode
+				p.separator
+				h4 If you do not have a referral code, click here to get one.
+				p.text-center
+					a.button.outline(href="#") Generate me a referral code.
 				p.text-center
 					a.button.outline(href="/account/me/referral") Refer a Friend today! 
 				h4 You get $#{user.profile.rewardPerReferralPurchase} for every purchase they make.

@@ -1094,7 +1094,7 @@ exports.postReferral = function(req, res) {
         to: req.body.email,
         from: req.user.email,
         subject: 'Hi',
-        text: "I've discovered the best-kept secret in luxury beauty — and I think you're going to love it as much as I do. Check out mirher.com, and get $10 when using the code: " + req.user._id
+        text: "I've discovered the best-kept secret in luxury beauty — and I think you're going to love it as much as I do. Check out mirher.com, and get $10 when using the code: " + req.user.referralcode
     };
     sendgrid.send(payload, function(err, json) {
         if (err) {
